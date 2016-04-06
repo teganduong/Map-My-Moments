@@ -1,12 +1,12 @@
-# Project Name
+# Map-My-Moments
 
 > Pithy project description
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Tegan Duong
+  - __Scrum Master__: Bucko Perley
+  - __Development Team Members__: Vince Boucherie, Jonathan Mah
 
 ## Table of Contents
 
