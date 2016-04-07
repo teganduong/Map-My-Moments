@@ -1,6 +1,6 @@
 # Map-My-Moments
 
-> Pithy project description
+> Map-My-Moments is a social media app that allows users to take and view photos from other users based on their current location. When a user takes a photo, a location is attached to that photo and enables other users who check-in to that location later on to access and like the photos. 
 
 ## Team
 
@@ -25,10 +25,7 @@
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+
 
 ## Development
 
