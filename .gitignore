@@ -4,3 +4,9 @@ bower_components/
 
 build/
 dist/
+
+# TYPINGS DEFINITION FOR VSCODE
+typings
+typings.json
+jsconfig.json
+
