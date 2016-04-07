@@ -24,3 +24,4 @@ accounts-password       # Password support for accounts
 accounts-google         # Login service for Google accounts
 practicalmeteor:mocha
 xolvio:cleaner
+velocity:meteor-stubs
