@@ -1,4 +1,4 @@
-# Project Name #
+# Map-My-Moments #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -15,30 +15,29 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
- 
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## Target Audience ##
+  > For social media users and people who like to share their photos with the pulic.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Map-My-Moments is a social media app that allows users to take and view photos from other users based on their current location. When a user takes a photo, a location is attached to that photo and enables other users who check-in to that location later on to access and like the photos.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Users on social media sites like Instagram and Facebook have newsfeed content based on who they are friends with. This means that the content is attached to a user rather than a location.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Instead of requiring users to be friends with someone or to follow others, the content on a user's newsfeed is based on their current location rather than who they are friends with. Depending on the user's location, they are allowed viewing access to the photos taken by other users at that same location. 
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "I'm excited to connect people with the community by allowing them to see what others are doing within an area!"
+  - A really awesome member of the developer team
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Install the app, create an account and enable the app to access your current location. Your newsfeed content will refresh to show you pictures taken by other users at your location. Click on the camera button to take a photo and post!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "I love this app because it allows me to see what other people are doing in my area without the commitment of having friends!"
+  - Vince 
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Tell your friends about the app and start exploring your community to see what's going on!
