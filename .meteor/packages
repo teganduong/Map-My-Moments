@@ -26,3 +26,7 @@ practicalmeteor:mocha
 xolvio:cleaner
 velocity:meteor-stubs
 practicalmeteor:chai
+session
+mdg:camera
+gadicc:blaze-react-component
+
