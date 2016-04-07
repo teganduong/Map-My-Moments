@@ -25,3 +25,4 @@ accounts-google         # Login service for Google accounts
 practicalmeteor:mocha
 xolvio:cleaner
 velocity:meteor-stubs
+practicalmeteor:chai
