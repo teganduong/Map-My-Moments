@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Template } from 'meteor/templating';
-import { Blaze } from 'meteor/blaze';
+// import { Template } from 'meteor/templating';
+import Blaze from 'meteor/gadicc:blaze-react-component';
  
-export class Signin extends Component {
+export class BlazeSignin extends Component {
   componentDidMount() {
     // Use Meteor Blaze to render login buttons
     this.view = Blaze.render(Template.loginButtons,
@@ -18,3 +18,9 @@ export class Signin extends Component {
     return <span ref="container" />;
   }
 }
+
+export const Signin = () => (
+  <div>
+    <Blaze template="loginButtons" />
+  </div>
+);
