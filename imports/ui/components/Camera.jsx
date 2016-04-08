@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 import Blaze from 'meteor/gadicc:blaze-react-component';
  
 // Camera component - represents the camera view
@@ -29,7 +28,7 @@ export class Camera extends Component {
       <div className="container">
         <h1>Post a moment</h1>
         <span dangerouslySetInnerHTML={{ __html: '<img src="' + this.state.srcPicture + '"/>' }}/>
-        <Button bsStyle="primary" onClick={this.takePicture.bind(this)}>Take Picture</Button>
+        <button className="primary" onClick={this.takePicture.bind(this)}>Take Picture</button>
       </div>
     );
   }
