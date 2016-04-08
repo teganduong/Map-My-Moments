@@ -6,10 +6,10 @@ import {Camera} from '../imports/ui/components/Camera';
 
 
 FlowRouter.route("/", {
-  name: 'Newsfeed',
+  name: 'NewsFeed',
   action() {
     mount(Layout, {
-      content: (<Newsfeed />)
+      content: (<NewsFeed />)
     });
   }
 });

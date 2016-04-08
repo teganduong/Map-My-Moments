@@ -19,8 +19,8 @@
   "homepage": "https://github.com/Bucko13/map-my-moments#readme",
   "dependencies": {
     "Faker": "^0.7.2",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.8",
     "react-mounter": "^1.1.0"
   },
   "devDependencies": {
