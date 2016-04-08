@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import Blaze from 'meteor/gadicc:blaze-react-component';
  
 // Camera component - represents the camera view
-export default class Camera extends Component {
+export class Camera extends Component {
   constructor() {
     super();
     this.state = {
