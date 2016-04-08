@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {mount} from 'react-mounter';
 import {Layout} from '../imports/ui/App.jsx';
 import {Signin} from '../imports/ui/Signin';
-import {Camera} from '../imports/ui/Camera';
+import {Camera} from '../imports/ui/components/Camera';
 
 
 FlowRouter.route("/", {
