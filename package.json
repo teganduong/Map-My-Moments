@@ -21,7 +21,8 @@
     "Faker": "^0.7.2",
     "react": "^15.0.0",
     "react-bootstrap": "^0.28.5",
-    "react-dom": "^15.0.0"
+    "react-dom": "^15.0.0",
+    "react-mounter": "^1.1.0"
   },
   "devDependencies": {
     "react-addons-test-utils": "^15.0.0"
