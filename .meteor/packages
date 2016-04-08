@@ -30,3 +30,4 @@ session
 mdg:camera
 gadicc:blaze-react-component
 
+service-configuration   # Manage the configuration for third-party services
