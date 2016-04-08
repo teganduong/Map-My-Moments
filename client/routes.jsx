@@ -15,10 +15,10 @@ FlowRouter.triggers.enter(function(context, redirect) {
 });
 
 FlowRouter.route("/", {
-  name: 'Newsfeed',
+  name: 'NewsFeed',
   action() {
     mount(Layout, {
-      content: (<Newsfeed />)
+      content: (<NewsFeed />)
     });
   }
 });
