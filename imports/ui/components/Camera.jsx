@@ -26,7 +26,7 @@ export class Camera extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Post a moment</h1>
+        <h1>Post a Moment</h1>
         <span dangerouslySetInnerHTML={{ __html: '<img src="' + this.state.srcPicture + '"/>' }}/>
         <button className="primary" onClick={this.takePicture.bind(this)}>Take Picture</button>
       </div>
