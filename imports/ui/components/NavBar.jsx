@@ -30,6 +30,9 @@ export class NavBar extends Component {
               <li>
                 <a href='/photo/:_id'>PhotoViewer </a>
               </li>
+              <li>
+                <a href='/signin'>Sign In!</a>
+              </li>
             </ul>
           </div>
         </div>
