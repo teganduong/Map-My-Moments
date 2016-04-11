@@ -17,7 +17,7 @@ export class NavBar extends Component {
   render() {
     var signInButton;
     if(Meteor.user()){
-      signInButton = <li><a href='/logout'>Words.</a></li>
+      signInButton = <li><a href='/logout'>Log Out</a></li>
     } else {
       signInButton = <li><a href='/signin'>Sign In!</a></li>
     }
