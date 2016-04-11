@@ -51,6 +51,7 @@ livedata@1.0.17
 localstorage@1.0.8
 logging@1.0.11
 mdg:camera@1.4.1
+mdg:geolocation@1.3.0
 meteor@1.1.13
 meteor-base@1.0.3
 minifier-css@1.1.10
