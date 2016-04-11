@@ -35,3 +35,4 @@ kadira:flow-router
 blaze
 twbs:bootstrap          # The most popular front-end framework for developing responsive, mobile first projects on the web.  
 edgee:slingshot         # Directly post files to cloud storage services, such as AWS-S3.
+dburles:google-maps     # Google Maps Javascript API v3
