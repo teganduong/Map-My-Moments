@@ -6,7 +6,6 @@ export const Layout = ({content}) => (
     <div>
         <h1>My App</h1>
         <hr />
-        <div id="temp"></div>
         <div>{content}</div>
         <div><NavBar /></div>
 

@@ -24,8 +24,8 @@ export const PhotoMap = React.createClass({
     return {
       center: new google.maps.LatLng(37.733795, -122.446747),
       zoom: 8,
-      key: GOOGLEAPI,
-      libraries: 'geometry,places'
+      libraries: 'geometry,places',
+      apiKey: GOOGLEAPI
 
     };
   },
@@ -47,7 +47,7 @@ export const GoogleMap = React.createClass({
   componentDidMount() {
     GoogleMaps.create({
       name: this.props.name,
-      element: document.getElementById('temp'),
+      element: document.getElementById('map-container'),
       options: this.props.options
     });
 
@@ -58,6 +58,7 @@ export const GoogleMap = React.createClass({
       });
     });
   },
+
   componentWillUnmount() {
     if (GoogleMaps.maps[this.props.name]) {
       google.maps.event.clearInstanceListeners(GoogleMaps.maps[this.props.name].instance);
@@ -65,7 +66,7 @@ export const GoogleMap = React.createClass({
     } 
   },
   render() {
-    return <div className="map-container"></div>;
+    return <div className="map-container" id="map-container" style={greatPlaceStyle}></div>;
   }
 });
 
@@ -74,3 +75,26 @@ export const GoogleMap = React.createClass({
 //     return React.render(<App />, document.getElementById('root'));
 //   });
 // }
+
+const K_WIDTH = 400;
+const K_HEIGHT = 400;
+
+const greatPlaceStyle = {
+  // initially any map object has left top corner at lat lng coordinates
+  // it's on you to set object origin to 0,0 coordinates
+  // position: 'absolute',
+  width: window.innerWidth,
+  height: window.innerHeight,
+  left: 0,
+  top: 0,
+
+  
+  backgroundColor: 'white',
+  textAlign: 'center',
+  color: '#3f51b5',
+  fontSize: 16,
+  fontWeight: 'bold',
+  padding: 4
+};
+
+export {greatPlaceStyle};
