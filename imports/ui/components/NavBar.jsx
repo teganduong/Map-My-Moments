@@ -7,11 +7,20 @@ export class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: true
+      display: true,
+      loggedIn: false,
     }
   }
 
+
+
   render() {
+    var signInButton;
+    if(Meteor.user()){
+      signInButton = <li><a href='/logout'>Words.</a></li>
+    } else {
+      signInButton = <li><a href='/signin'>Sign In!</a></li>
+    }
     return (
 
 
@@ -30,9 +39,7 @@ export class NavBar extends Component {
               <li>
                 <a href='/photo/:_id'>PhotoViewer </a>
               </li>
-              <li>
-                <a href='/signin'>Sign In!</a>
-              </li>
+              {signInButton}
             </ul>
           </div>
         </div>
