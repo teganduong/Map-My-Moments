@@ -65,6 +65,7 @@ export class Camera extends Component {
       // Get location otherwise use 0 & 0 for place holder
       var point = Geolocation.currentLocation() || { coords: { longitude: 0, latitude: 0 } };
       Meteor.call('posts.insert', downloadUrl, point.coords.longitude, point.coords.latitude, function(err, result) {
+        // Show success message to user and redirect to newsfeed later
         console.log(err, result);
       });
     });
