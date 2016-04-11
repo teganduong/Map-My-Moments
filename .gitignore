@@ -5,6 +5,9 @@ bower_components/
 build/
 dist/
 
+# DEV KEYS
+config.json
+
 # TYPINGS DEFINITION FOR VSCODE
 typings
 typings.json

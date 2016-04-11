@@ -34,3 +34,4 @@ service-configuration   # Manage the configuration for third-party services
 kadira:flow-router
 blaze
 twbs:bootstrap          # The most popular front-end framework for developing responsive, mobile first projects on the web.  
+edgee:slingshot         # Directly post files to cloud storage services, such as AWS-S3.
