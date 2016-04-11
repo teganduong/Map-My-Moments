@@ -12,4 +12,5 @@ config.json
 typings
 typings.json
 jsconfig.json
-
+.eslintrc.js
+.idea/
