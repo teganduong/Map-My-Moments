@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {GOOGLEAPI} from '../../api/google-key.js';
 
 // code adapted from sample React demo by creator of map package
 // https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
@@ -21,8 +22,11 @@ export const PhotoMap = React.createClass({
   },
   _mapOptions() {
     return {
-      center: new google.maps.LatLng(-37.8136, 144.9631),
-      zoom: 8
+      center: new google.maps.LatLng(37.733795, -122.446747),
+      zoom: 8,
+      key: GOOGLEAPI,
+      libraries: 'geometry,places'
+
     };
   },
   render() {
