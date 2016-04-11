@@ -3,11 +3,16 @@ import React, { Component } from 'react';
 // code adapted from sample React demo by creator of map package
 // https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
 
-export class Map extends Component({
+export const PhotoMap = React.createClass({
+
   mixins: [ReactMeteorData],
+
   componentDidMount() {
     GoogleMaps.load();
+    //need to load in options here as in this example:
+    // GoogleMaps.load({ v: '3', key: '12345', libraries: 'geometry,places' });
   },
+
   getMeteorData() {
     return {
       loaded: GoogleMaps.loaded(),
@@ -21,14 +26,15 @@ export class Map extends Component({
     };
   },
   render() {
-    if (this.data.loaded)
+    if (this.data.loaded) {
       return <GoogleMap name="mymap" options={this.data.mapOptions} />;
+    }
 
     return <div>Loading map...</div>;
   }
 });
 
-GoogleMap = React.createClass({
+export const GoogleMap = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     options: React.PropTypes.object.isRequired
@@ -58,8 +64,8 @@ GoogleMap = React.createClass({
   }
 });
 
-if (Meteor.isClient) {
-  Meteor.startup(function() {
-    return React.render(<App />, document.getElementById('root'));
-  });
-}
+// if (Meteor.isClient) {
+//   Meteor.startup(function() {
+//     return React.render(<App />, document.getElementById('root'));
+//   });
+// }
