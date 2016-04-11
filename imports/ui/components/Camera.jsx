@@ -11,7 +11,7 @@ export class Camera extends Component {
       pictureURL: '',
       pictureBlob: null,
     };
-    this.takePicture();
+    // this.takePicture();
   }
 
   takePicture() {
@@ -61,13 +61,15 @@ export class Camera extends Component {
 
   uploadPicture() {
     // console.log(this.state.pictureURL);
-    // var blob = this.dataURItoBlob(this.state.pictureURL);
     uploader.send(this.state.pictureBlob, function(error, downloadUrl) {
-      // Meteor.users.update(Meteor.userId(), { $push: { "profile.files": { 'name': file.name, 'url': downloadUrl } } });
-      console.log(error);
-      console.log(downloadUrl);
+      // Get location otherwise use 0 & 0 for place holder
+      var point = Geolocation.currentLocation() || { coords: { longitude: 0, latitude: 0 } };
+      Meteor.call('posts.insert', downloadUrl, point.coords.longitude, point.coords.latitude, function(err, result) {
+        // Show success message to user and redirect to newsfeed later
+        console.log(err, result);
+      });
     });
-  }  
+  }
 
   /* Raw picture data doesn't render properly with React on mobile.       *
    * Use Blaze to render the raw data for now with CameraHelper template. */
@@ -82,8 +84,10 @@ export class Camera extends Component {
       <div className="container">
         <h1>Post a moment</h1>
         {myImage}
-        <button className="primary" onClick={this.takePicture.bind(this)}>Take Picture</button>
-        <button className="primary" onClick={this.uploadPicture.bind(this)}>Post Photo</button>
+        <div>
+          <button className="primary" onClick={this.takePicture.bind(this)}>Take Picture</button>
+          <button className="primary" onClick={this.uploadPicture.bind(this) }>Post Photo</button>
+        </div>
       </div>
     );
   }

@@ -13,4 +13,5 @@ imports/api/google-key.js
 typings
 typings.json
 jsconfig.json
-
+.eslintrc.js
+.idea/

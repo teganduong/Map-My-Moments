@@ -4,6 +4,7 @@ import {Layout} from '../imports/ui/App.jsx';
 import {Signin} from '../imports/ui/Signin';
 import {Camera} from '../imports/ui/components/Camera';
 import {PhotoMap} from '../imports/ui/components/Map';
+import {Logout} from '../imports/ui/components/LogOut.jsx';
 
 
 FlowRouter.route("/", {
@@ -20,6 +21,15 @@ FlowRouter.route("/signin", {
   action() {
     mount(Layout, {
       content: (<Signin />)
+    });
+  }
+});
+
+FlowRouter.route("/logout", {
+  name: 'Logout',
+  action() {
+    mount(Layout, {
+      content: (<Logout />)
     });
   }
 });
