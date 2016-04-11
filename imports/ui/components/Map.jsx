@@ -43,10 +43,11 @@ export const GoogleMap = React.createClass({
     name: React.PropTypes.string.isRequired,
     options: React.PropTypes.object.isRequired
   },
+
   componentDidMount() {
     GoogleMaps.create({
       name: this.props.name,
-      element: React.findDOMNode(this),
+      element: document.getElementById('temp'),
       options: this.props.options
     });
 
