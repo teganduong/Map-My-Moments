@@ -35,5 +35,7 @@ kadira:flow-router
 blaze                   # Meteor Reactive Templating library
 twbs:bootstrap          # The most popular front-end framework for developing responsive, mobile first projects on the web.  
 edgee:slingshot         # Directly post files to cloud storage services, such as AWS-S3.
+dburles:google-maps     # Google Maps Javascript API v3
+react-meteor-data       # React mixin for reactively tracking Meteor data (needed for maps)
 mdg:geolocation         # Provides reactive geolocation on desktop and mobile.
 check                   # Check whether a value matches a pattern
