@@ -41,11 +41,19 @@ export class NewsFeedPage extends Component {
           subtitle="Add new moments using the field above"
         />
       );
-    } 
+    } else {
+      Posts = posts.map(post => (
+        <NewsFeedEntry
+          post={post}
+          key={post._id}
+          onNewsFeedEntryClick={this.onNewsFeedEntryClick.bind(this)}
+        />
+      ));
+    }
 
     return (
       <div className="page lists-show">
-        <NavBar />
+        <NavBar newsfeed={newsfeed}/>
         <div className="content-scrollable list-items">
           {loading ? <Message title="Loading News Feed..."/> : Posts}
         </div>
