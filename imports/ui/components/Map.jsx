@@ -18,14 +18,18 @@ export const PhotoMap = React.createClass({
     };
   },
   _mapOptions() {
-    return {
-      center: new google.maps.LatLng(37.733795, -122.446747),
-      zoom: 8,
-      libraries: 'geometry,places',
-      apiKey: GOOGLEAPI
-
-    };
+    var currentLoc = Geolocation.latLng();
+    console.log('i am in map options! currentLoc not getting returned?: ', currentLoc);
+    if (GoogleMaps.loaded() && currentLoc) {
+      return {
+        center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
+        zoom: MAP_ZOOM,
+        libraries: 'geometry,places',
+        apiKey: GOOGLEAPI
+      };
+    }
   },
+
   render() {
     if (this.data.loaded) {
       return <GoogleMap name="mymap" options={this.data.mapOptions} />;
@@ -42,6 +46,8 @@ export const GoogleMap = React.createClass({
   },
 
   componentDidMount() {
+    //currentLoc is currently returning null
+
     GoogleMaps.create({
       name: this.props.name,
       element: document.getElementById('map-container'),
@@ -49,6 +55,8 @@ export const GoogleMap = React.createClass({
     });
 
     GoogleMaps.ready(this.props.name, function(map) {
+     
+
       var marker = new google.maps.Marker({
         position: map.options.center,
         map: map.instance
@@ -63,17 +71,16 @@ export const GoogleMap = React.createClass({
     } 
   },
   render() {
-    return <div className="map-container" id="map-container" style={greatPlaceStyle}></div>;
+    return <div className="map-container" id="map-container" style={mapsStyles}></div>;
   }
 });
 
-const greatPlaceStyle = {
+const mapsStyles = {
   width: window.innerWidth,
   height: window.innerHeight,
   left: 0,
   top: 0,
 
-  
   backgroundColor: 'white',
   textAlign: 'center',
   color: '#3f51b5',
@@ -81,5 +88,7 @@ const greatPlaceStyle = {
   fontWeight: 'bold',
   padding: 4
 };
+
+const MAP_ZOOM = 15;
 
 export {mapsStyles};
