@@ -12,6 +12,10 @@ export const PhotoMap = React.createClass({
   },
 
   getMeteorData() {
+    // need to use this below (autorun)
+    var currentLoc = Tracker.autorun(function(){
+      console.log('your current location is ',  Geolocation.latLng() );
+    } );
     return {
       loaded: GoogleMaps.loaded(),
       mapOptions: GoogleMaps.loaded() && this._mapOptions()
@@ -20,14 +24,15 @@ export const PhotoMap = React.createClass({
   _mapOptions() {
     var currentLoc = Geolocation.latLng();
     console.log('i am in map options! currentLoc not getting returned?: ', currentLoc);
-    if (GoogleMaps.loaded() && currentLoc) {
+
+    // if (GoogleMaps.loaded() && currentLoc) {
       return {
-        center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
+        center: new google.maps.LatLng(-37.8136, 144.9631),
         zoom: MAP_ZOOM,
         libraries: 'geometry,places',
         apiKey: GOOGLEAPI
       };
-    }
+    // }
   },
 
   render() {
@@ -46,8 +51,8 @@ export const GoogleMap = React.createClass({
   },
 
   componentDidMount() {
-    //currentLoc is currently returning null
-
+    // need to wait to do this create below until we have a current location
+    
     GoogleMaps.create({
       name: this.props.name,
       element: document.getElementById('map-container'),
@@ -55,8 +60,6 @@ export const GoogleMap = React.createClass({
     });
 
     GoogleMaps.ready(this.props.name, function(map) {
-     
-
       var marker = new google.maps.Marker({
         position: map.options.center,
         map: map.instance

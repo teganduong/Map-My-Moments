@@ -3,8 +3,9 @@ import {mount} from 'react-mounter';
 import {Layout} from '../imports/ui/App.jsx';
 import {Signin} from '../imports/ui/Signin';
 import {Camera} from '../imports/ui/components/Camera';
-import {PhotoMap} from '../imports/ui/components/Map';
+import {PhotoMap} from '../imports/ui/components/Map.jsx';
 import {Logout} from '../imports/ui/components/LogOut.jsx';
+import {MapDisplay} from '../imports/ui/components/MapDisplay.jsx';
 
 
 FlowRouter.route("/", {
