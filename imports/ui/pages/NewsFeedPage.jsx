@@ -13,7 +13,7 @@ export class NewsFeedPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: posts
+      posts: posts,
       currentPost: ''
     }
   }
