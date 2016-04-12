@@ -6,11 +6,9 @@ import { Thumbnail } from 'react-bootstrap';
 export class NewsFeedEntry extends Component {
   constructor(props) {
     super(props);
-
+  }
 
   render() {
-    const { post } = this.props;
-
     return (
       <Grid>
         <Row>
@@ -26,11 +24,5 @@ export class NewsFeedEntry extends Component {
         </Row>
       </Grid>
     );
-  }
+  };
 }
-
-NewsFeedEntry.propTypes = {
-  post: React.PropTypes.object,
-  onEditingChange: React.PropTypes.func,
-};
-
