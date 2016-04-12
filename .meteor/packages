@@ -40,5 +40,4 @@ dburles:google-maps     # Google Maps Javascript API v3
 react-meteor-data       # React mixin for reactively tracking Meteor data (needed for maps)
 mdg:geolocation         # Provides reactive geolocation on desktop and mobile.
 check                   # Check whether a value matches a pattern
-underscore              # Collection of small helpers: _.map, _.each, ...
 meteor-tool
