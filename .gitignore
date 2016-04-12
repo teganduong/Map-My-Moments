@@ -5,8 +5,13 @@ bower_components/
 build/
 dist/
 
+# DEV KEYS
+config.json
+imports/api/google-key.js
+
 # TYPINGS DEFINITION FOR VSCODE
 typings
 typings.json
 jsconfig.json
-
+.eslintrc.js
+.idea/

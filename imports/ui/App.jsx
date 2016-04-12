@@ -9,5 +9,7 @@ export const Layout = ({content}) => (
         <hr />
         <div>{content}</div>
         <div><NewsFeed /></div>
+        <div><NavBar /></div>
+
     </div>
 );

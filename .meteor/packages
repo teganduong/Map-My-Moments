@@ -26,12 +26,17 @@ practicalmeteor:mocha
 xolvio:cleaner
 velocity:meteor-stubs
 practicalmeteor:chai
-session
-mdg:camera
-gadicc:blaze-react-component
+session                 # Session variable
+mdg:camera              # Photos with one function call on desktop and mobile.
+gadicc:blaze-react-component      # Use Blaze templates inside of React
 
 service-configuration   # Manage the configuration for third-party services
 kadira:flow-router
-blaze
-react-meteor-data       # React mixin for reactively tracking Meteor data
 underscore              # Collection of small helpers: _.map, _.each, ...
+blaze                   # Meteor Reactive Templating library
+twbs:bootstrap          # The most popular front-end framework for developing responsive, mobile first projects on the web.  
+edgee:slingshot         # Directly post files to cloud storage services, such as AWS-S3.
+dburles:google-maps     # Google Maps Javascript API v3
+react-meteor-data       # React mixin for reactively tracking Meteor data (needed for maps)
+mdg:geolocation         # Provides reactive geolocation on desktop and mobile.
+check                   # Check whether a value matches a pattern
