@@ -8,10 +8,10 @@ import {Logout} from '../imports/ui/components/LogOut.jsx';
 
 
 FlowRouter.route("/", {
-  name: 'Newsfeed',
+  name: 'Signin',
   action() {
     mount(Layout, {
-      content: (<Newsfeed />)
+      content: (<Signin />)
     });
   }
 });
