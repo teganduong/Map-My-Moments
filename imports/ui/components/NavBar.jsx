@@ -24,6 +24,9 @@ export class NavBar extends Component {
       signInButton = (<Button href="/signin"><Glyphicon glyph="user"/></Button>);
       signInText = (<NavItem className='hidden-xs hidden-sm' eventKey={3} href="/signin">Sign In</NavItem>);
     }
+
+    /* Navbar doesn't support justified nav items even though it 'does'  *
+     * Hack to allow us to use the entire bottom row for buttons for now */
     return (
       <Navbar fixedBottom fluid>
           <Nav>
@@ -31,9 +34,7 @@ export class NavBar extends Component {
             <NavItem className='hidden-xs hidden-sm' eventKey={2} href="/camera">Camera</NavItem>
             <NavItem className='hidden-xs hidden-sm' eventKey={3} href="/map">Map</NavItem>
             {signInText}
-
-            /* Navbar doesn't support justified nav items even though it 'does'  *
-             * Hack to allow us to use the entire bottom row for buttons for now */
+            
             <NavItem className='hidden-md hidden-lg'>
               <ButtonGroup justified>
                 <Button href="/"><Glyphicon glyph="list-alt"/></Button>
