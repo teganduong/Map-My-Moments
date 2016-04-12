@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import NavBar from '../components/NavBar.jsx';
 import NewsFeedEntry from '../components/NewsFeedEntry.jsx';
+import { dummyData } from '../../api/dummyData';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 
@@ -12,9 +13,9 @@ import Message from '../components/Message.jsx';
 export class NewsFeedPage extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
-      posts: posts,
-      currentPost: ''
+      posts: dummyData
     }
   }
 

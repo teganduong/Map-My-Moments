@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { NewsFeedEntry } from './NewsFeedEntry';
+import { dummyData } from '../../api/dummyData.js';
 
 
 export class NewsFeed extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      posts: dummyData
+    }
+  }
+
   render() {
     var content;
     // Loop through all the posts
-    if (this.props.posts.length > 0) {
-      content = this.props.posts.map(function(post, i) {
+    console.log('=============>>>', this.state.posts);
+    if (this.state.posts.length > 0) {
+      content = this.state.posts.map(function(post, i) {
         return <NewsFeedEntry post={post} key={i}/>
       })
     } else {
@@ -17,7 +27,7 @@ export class NewsFeed extends Component {
 
     return (
       <div className="row">
-        <h3 className="col s12 center white-text">Status Feed</h3>
+        <h3 className="col s12 center">Status Feed</h3>
         {content}
       </div>
     )
