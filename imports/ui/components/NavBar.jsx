@@ -31,7 +31,7 @@ export class NavBar extends Component {
               <li>
                 <a href='/camera'>Camera</a></li>
               <li>
-                <a href='/newsfeed'>NewsFeed</a>
+                <a href='/'>NewsFeed</a>
               </li>
               <li>
                 <a href='/map'>Map</a>
