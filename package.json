@@ -2,6 +2,9 @@
   "name": "map-my-moments",
   "version": "1.0.0",
   "description": "> Map-My-Moments is a social media app that allows users to take and view photos from other users based on their current location. When a user takes a photo, a location is attached to that photo and enables other users who check-in to that location later on to access and like the photos.",
+  "engines": {
+    "node": "4.4.2"
+    },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
