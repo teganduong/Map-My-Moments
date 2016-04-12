@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import {mount} from 'react-mounter';
 import {Layout} from '../imports/ui/App.jsx';
 import {Signin} from '../imports/ui/Signin';

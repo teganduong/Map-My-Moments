@@ -13,7 +13,7 @@ export class NewsFeedEntry extends Component {
       <Grid>
         <Row>
         <Col xs={6} md={4}>
-          <Thumbnail src="https://s-media-cache-ak0.pinimg.com/736x/35/4c/de/354cdedfdf6c9f68ee669d79146fc50c.jpg" alt="242x200">
+          <Thumbnail src="">
             <h3>Thumbnail label</h3>
             <p>Description</p>
             <p>

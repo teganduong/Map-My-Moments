@@ -17,7 +17,7 @@ export class NewsFeed extends Component {
   
     // Loop through all the posts
     var content = this.state.posts.map(function(post, i) {
-        return <NewsFeedEntry post={post} key={i}/>
+      return <NewsFeedEntry post={post} key={i}/>
     });
 
     return (
