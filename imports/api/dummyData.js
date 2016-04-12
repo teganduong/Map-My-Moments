@@ -1,7 +1,7 @@
 export const dummyData = [
   {
     username: '@user1',
-    url: 'https://s-media-cache-ak0.pinimg.com/736x/35/4c/de/354cdedfdf6c9f68ee669d79146fc50c.jpg" alt="242x200',
+    url: 'https://lh5.ggpht.com/wAGD0ZKPLCAfKtKxUzxhQY_19EoBhWak8PX52HmnIweJjV1bRGyZotUcJ_Vibgnd0A=h900',
     title: 'Puppies cuddling',
     likes: 10
   },
