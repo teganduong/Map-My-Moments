@@ -32,6 +32,7 @@ gadicc:blaze-react-component      # Use Blaze templates inside of React
 
 service-configuration   # Manage the configuration for third-party services
 kadira:flow-router
+<<<<<<< ac23c47b3cbef3b29b0b0c39d0bcb60d74ed1ab5
 blaze                   # Meteor Reactive Templating library
 twbs:bootstrap          # The most popular front-end framework for developing responsive, mobile first projects on the web.  
 edgee:slingshot         # Directly post files to cloud storage services, such as AWS-S3.
@@ -39,3 +40,8 @@ dburles:google-maps     # Google Maps Javascript API v3
 react-meteor-data       # React mixin for reactively tracking Meteor data (needed for maps)
 mdg:geolocation         # Provides reactive geolocation on desktop and mobile.
 check                   # Check whether a value matches a pattern
+=======
+blaze
+react-meteor-data       # React mixin for reactively tracking Meteor data
+underscore              # Collection of small helpers: _.map, _.each, ...
+>>>>>>> Refactor NewsFeed and NewsFeedEntry components to be separate
