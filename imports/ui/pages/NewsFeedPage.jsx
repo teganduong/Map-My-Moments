@@ -2,6 +2,7 @@
 // its data to be passed in using React props
 
 import React, { Component } from 'react';
+import { render } from 'react-dom';
 import NavBar from '../components/NavBar.jsx';
 import NewsFeedEntry from '../components/NewsFeedEntry.jsx';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
@@ -13,7 +14,7 @@ export class NewsFeedPage extends Component {
     super(props);
     this.state = {
       posts: posts
-      currentPost: null
+      currentPost: ''
     }
   }
 

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { NavBar } from './components/NavBar.jsx'
+import { NewsFeed } from './components/NewsFeed'
 
 // define and export our Layout component
 export const Layout = ({content}) => (
@@ -6,6 +8,6 @@ export const Layout = ({content}) => (
         <h1>My App</h1>
         <hr />
         <div>{content}</div>
-        <div></div>
+        <div><NewsFeed /></div>
     </div>
 );
