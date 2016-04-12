@@ -4,6 +4,17 @@ import { Grid, Row, Col, Button, Thumbnail } from 'react-bootstrap';
 
 
 export class NewsFeedEntry extends Component {
+  constructor(props) {
+    super();
+
+    this.state = {
+      likes: 0
+    }
+  }
+
+  incrementLikes() {
+    this.setState({ likes: this.state.likes + 1 });
+  }
 
   render() {
     return (
@@ -11,10 +22,12 @@ export class NewsFeedEntry extends Component {
         <Row>
         <Col xs={6} md={4}>
           <Thumbnail src={this.props.post.url}>
-            <h3>{this.props.post.title}</h3>
+            <label>{this.state.likes} likes</label>
+            <p>{this.props.post.username}</p>
+            <h4>{this.props.post.title}</h4>
             <p>Description</p>
             <p>
-              <Button bsStyle="primary">Like</Button>&nbsp;
+              <Button bsStyle="primary" onClick={this.incrementLikes.bind(this)}>Like</Button>&nbsp;
             </p>
           </Thumbnail>
         </Col>
