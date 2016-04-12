@@ -34,3 +34,4 @@ service-configuration   # Manage the configuration for third-party services
 kadira:flow-router
 blaze
 react-meteor-data       # React mixin for reactively tracking Meteor data
+underscore              # Collection of small helpers: _.map, _.each, ...
