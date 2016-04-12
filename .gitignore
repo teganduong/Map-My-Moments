@@ -7,7 +7,6 @@ dist/
 
 # DEV KEYS
 config.json
-imports/api/google-key.js
 
 # TYPINGS DEFINITION FOR VSCODE
 typings
