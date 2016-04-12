@@ -23,8 +23,7 @@ Slingshot.createDirective("myFileUploads", Slingshot.S3Storage, {
 
   authorize: function() {
     //Deny uploads if user is not logged in.
-    //TODO HACK TO ENABLE FOR DEV REGARDLESS
-    if (false && !this.userId) {
+    if (!this.userId) {
       var message = "Please login before posting files";
       throw new Meteor.Error("Login Required", message);
     }
