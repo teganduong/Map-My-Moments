@@ -5,11 +5,12 @@ import { Grid, Row, Col, Button, Thumbnail } from 'react-bootstrap';
 
 export class NewsFeedEntry extends Component {
   constructor(props) {
-    super();
+    super(props);
 
     this.state = {
-      likes: 0
-    }
+      likes: this.props.post.likes
+    };
+    this.incrementLikes = this.incrementLikes.bind(this);
   }
 
   incrementLikes() {
@@ -27,7 +28,7 @@ export class NewsFeedEntry extends Component {
             <h4>{this.props.post.title}</h4>
             <p>Description</p>
             <p>
-              <Button bsStyle="primary" onClick={this.incrementLikes.bind(this)}>Like</Button>&nbsp;
+              <Button bsStyle="primary" onClick={this.incrementLikes}>Like</Button>&nbsp;
             </p>
           </Thumbnail>
         </Col>
