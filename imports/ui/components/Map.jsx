@@ -3,15 +3,12 @@ import {GOOGLEAPI} from '../../api/google-key.js';
 
 // code adapted from sample React demo by creator of map package
 // https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
-
 export const PhotoMap = React.createClass({
 
   mixins: [ReactMeteorData],
 
   componentDidMount() {
     GoogleMaps.load();
-    //need to load in options here as in this example:
-    // GoogleMaps.load({ v: '3', key: '12345', libraries: 'geometry,places' });
   },
 
   getMeteorData() {
@@ -70,19 +67,7 @@ export const GoogleMap = React.createClass({
   }
 });
 
-// if (Meteor.isClient) {
-//   Meteor.startup(function() {
-//     return React.render(<App />, document.getElementById('root'));
-//   });
-// }
-
-const K_WIDTH = 400;
-const K_HEIGHT = 400;
-
 const greatPlaceStyle = {
-  // initially any map object has left top corner at lat lng coordinates
-  // it's on you to set object origin to 0,0 coordinates
-  // position: 'absolute',
   width: window.innerWidth,
   height: window.innerHeight,
   left: 0,
@@ -97,4 +82,4 @@ const greatPlaceStyle = {
   padding: 4
 };
 
-export {greatPlaceStyle};
+export {mapsStyles};
