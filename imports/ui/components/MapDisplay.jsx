@@ -66,7 +66,11 @@ const MyMap = React.createClass({
         var marker = new google.maps.Marker({
           position: photo.loc,
           map: map.instance,
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.DROP,
+          url: Meteor.absoluteUrl('photo/' + photo.id)
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            window.location.href = this.url;
         });
       }
     });

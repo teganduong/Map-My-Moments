@@ -46,9 +46,9 @@ FlowRouter.route("/logout", {
 
 FlowRouter.route("/photo/:_id", {
   name: 'PhotoViewer',
-  action() {
+  action(params) {
     mount(Layout, {
-      content: (<PhotoViewer />)
+      content: (<PhotoViewer photoId={params._id}/>)
     });
   }
 });
