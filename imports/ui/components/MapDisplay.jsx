@@ -14,7 +14,6 @@ export const MapDisplay = React.createClass({
   getMeteorData() {
     var currentLoc = Geolocation.latLng();
     if(GoogleMaps.loaded() && currentLoc) {
-      console.log('The map loaded!', currentLoc);
       var options = {
         center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
         zoom: MAP_ZOOM,
@@ -29,21 +28,22 @@ export const MapDisplay = React.createClass({
         2: {
           lat: 37.983406899999996, lng: -122.4086548
         }
-      }
-
+      };
     }
     return {
       loaded: GoogleMaps.loaded(),
-      mapOptions: GoogleMaps.loaded() && options
+      mapOptions: GoogleMaps.loaded() && options,
+      markers: markers
     }
   },
 
   render() {
-    if (this.data.loaded) {
+    if (this.data.loaded && this.data.mapOptions) {
       return <MyMap name="mymap" options={this.data.mapOptions} markers={this.data.markers}/>;
     }
-
+    
     return <div>Loading map...</div>;
+
   }
 });
 
@@ -52,10 +52,10 @@ const MyMap = React.createClass({
     name: React.PropTypes.string.isRequired,
     options: React.PropTypes.object.isRequired
   },
-
+  
   componentDidMount() {
     // need to wait to do this create below until we have a current location
-    console.log('These are the options in GoogleMap ', this.props.options);
+    MyMap.markers = this.props.markers;
 
     GoogleMaps.create({
       name: this.props.name,
@@ -64,8 +64,9 @@ const MyMap = React.createClass({
     });
 
     GoogleMaps.ready(this.props.name, function(map) {
+      console.log('My marker:', MyMap.markers[1]);
       var marker = new google.maps.Marker({
-        position: this.props.markers[1],
+        position: MyMap.markers[0],
         map: map.instance
       });
     });
