@@ -5,7 +5,7 @@ import NewsFeedPage from '../pages/NewsFeedPage.jsx';
 
 export default createContainer(({ params }) => {
   const { id } = params;
-  const postsHandle = Meteor.subscribe('posts.inList', id);
+  const postsHandle = Meteor.subscribe('posts', id);
   const loading = !postsHandle.ready();
   const newsfeed = Posts.findOne(id);
   const newsfeedExists = !loading && !!newsfeed;
