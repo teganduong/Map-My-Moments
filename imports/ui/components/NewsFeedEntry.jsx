@@ -34,11 +34,10 @@ export class NewsFeedEntry extends Component {
       <Grid>
         <Row>
         <Col xs={6} md={4}>
-          <Thumbnail src={this.props.post.url}>
+          <Thumbnail src={this.props.post.picURL}>
             <label>{this.state.likes} likes</label>
             <p>{this.props.post.username}</p>
-            <h4>{this.props.post.title}</h4>
-            <p>Description</p>
+            <h4>{this.props.post.caption}</h4>
             <p>
               <Button bsStyle="primary" onClick={this.toggleLike}>Like</Button>&nbsp;
             </p>
