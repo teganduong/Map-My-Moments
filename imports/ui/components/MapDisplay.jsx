@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {GOOGLEAPI} from '../../api/google-key.js';
+import { dummyData } from '../../api/dummyData.js';
 
 // code adapted from sample React demo by creator of map package
 // https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
@@ -21,18 +22,7 @@ export const MapDisplay = React.createClass({
         key: GOOGLEAPI
       };
 
-      var markers = {
-        1: {
-          id: 1,
-          lat: 37.783406899999996, 
-          lng: -122.4086548
-        },
-        2: {
-          id: 2,
-          lat: 37.983406899999996, 
-          lng: -122.4086548
-        }
-      };
+      var markers = dummyData;
     }
     return {
       loaded: GoogleMaps.loaded(),
@@ -58,21 +48,27 @@ const MyMap = React.createClass({
   },
   
   componentDidMount() {
-    // need to wait to do this create below until we have a current location
+    // setting markers to a variable in this scope 
+    // so we have access to it in the googlemap functions belo
     MyMap.markers = this.props.markers;
 
+    // GoogleMaps and methods made available through meteor package
     GoogleMaps.create({
       name: this.props.name,
       element: document.getElementById('map-container'),
       options: this.props.options
     });
 
+    // Once the map is ready, we can start setting the pins
     GoogleMaps.ready(this.props.name, function(map) {
-      console.log('My marker:', MyMap.markers[1]);
-      var marker = new google.maps.Marker({
-        position: MyMap.markers[1],
-        map: map.instance
-      });
+      // loop through and create a pin for each photo in passed in markers
+      for(let photo of MyMap.markers) {
+        var marker = new google.maps.Marker({
+          position: photo.loc,
+          map: map.instance,
+          animation: google.maps.Animation.DROP
+        });
+      }
     });
   },
 
@@ -101,6 +97,6 @@ const mapsStyles = {
   padding: 4
 };
 
-const MAP_ZOOM = 15;
+const MAP_ZOOM = 10;
 
 export {mapsStyles};
