@@ -86,7 +86,7 @@ export class Camera extends Component {
 
   render() {
     var post = {
-      title: (<Input type="text" placeholder="Caption" onChange={this.captionChange.bind(this)} />),
+      caption: (<Input type="text" placeholder="Caption" onChange={this.captionChange.bind(this)} />),
       url: this.state.pictureURL,
     };
     return (
