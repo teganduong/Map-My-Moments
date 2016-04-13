@@ -15,13 +15,6 @@ export class NewsFeedEntry extends Component {
     this.updateLikes = this.updateLikes.bind(this);
   }
 
-  updateLikes() {
-    var likeCount = this.state.liked ? this.state.likes - 1 : this.state.likes + 1;
-    this.setState({
-      likes: likeCount
-    });
-  }
-
   toggleLike() {
     this.setState({ 
       liked: !this.state.liked,
@@ -29,6 +22,12 @@ export class NewsFeedEntry extends Component {
     this.updateLikes();
   }
 
+  updateLikes() {
+    var likeCount = this.state.liked ? this.state.likes - 1 : this.state.likes + 1;
+    this.setState({
+      likes: likeCount
+    });
+  }
 
   render() {
     return (
