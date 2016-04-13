@@ -14,12 +14,21 @@ export const MapDisplay = React.createClass({
   getMeteorData() {
     var currentLoc = Geolocation.latLng();
     if(GoogleMaps.loaded() && currentLoc) {
-      console.log('here are your current coordinates: ', currentLoc);
+      console.log('The map loaded!', currentLoc);
       var options = {
         center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
         zoom: MAP_ZOOM,
         libraries: 'geometry,places',
         key: GOOGLEAPI
+      };
+
+      var markers = {
+        1: {
+          lat: 37.783406899999996, lng: -122.4086548
+        },
+        2: {
+          lat: 37.983406899999996, lng: -122.4086548
+        }
       }
 
     }
@@ -29,23 +38,9 @@ export const MapDisplay = React.createClass({
     }
   },
 
-  _mapOptions(currentLoc) {
-
-    console.log('map options center coordinates: ', currentLoc);
-
-    // if (GoogleMaps.loaded() && currentLoc) {
-      return {
-        center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
-        zoom: MAP_ZOOM,
-        libraries: 'geometry,places',
-        key: GOOGLEAPI
-      };
-    // }
-  },
-
   render() {
     if (this.data.loaded) {
-      return <MyMap name="mymap" options={this.data.mapOptions} />;
+      return <MyMap name="mymap" options={this.data.mapOptions} markers={this.data.markers}/>;
     }
 
     return <div>Loading map...</div>;
@@ -70,7 +65,7 @@ const MyMap = React.createClass({
 
     GoogleMaps.ready(this.props.name, function(map) {
       var marker = new google.maps.Marker({
-        position: map.options.center,
+        position: this.props.markers[1],
         map: map.instance
       });
     });
