@@ -16,7 +16,7 @@ export const dummyData = [
     id: 456,
     loc: {lat: 37.883406899999996, 
           lng: -122.4086548 }
-  },
+    },
   {
     username: '@user3',
     url: 'http://hellogiggles.com/wp-content/uploads/2013/12/09/a-cutest-puppies-11.jpg',

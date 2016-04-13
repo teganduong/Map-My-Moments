@@ -12,25 +12,17 @@ export const MapDisplay = React.createClass({
     GoogleMaps.load();
   },
 
-  getMeteorData() {
-    var currentLoc = Geolocation.latLng();
-    var markers;
-    Meteor.call('posts.nearby', -122.4086548, 37.783406899999996, 300, 5,
-       function(err, result) {
-         // results is an array of post objects
-          if (err) { throw new Error ('Problem finding posts from database')}
-          markers = result;
-          console.log(markers);
-          // need to do map settings asyncronously so it works when markers have been retrieved
-          if(GoogleMaps.loaded() && currentLoc) {
-            var options = {
-              center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
-              zoom: MAP_ZOOM,
-              libraries: 'geometry,places',
-              key: GOOGLEAPI
-            };
+  markers: [],
 
-          }
+  getMeteorData() {
+    var self = this;
+    var currentLoc = Geolocation.latLng();
+    Meteor.call('posts.nearby', -122.4086548, 37.783406899999996, 10000, 5,
+      function(err, result) {
+       // results is an array of post objects
+      if (err) { throw new Error ('Problem finding posts from database')}
+
+      self.markers= result;
     });
 
     if(GoogleMaps.loaded() && currentLoc) {
@@ -41,16 +33,15 @@ export const MapDisplay = React.createClass({
         key: GOOGLEAPI
       };
     }
-    console.log(markers);
+
     return {
       loaded: GoogleMaps.loaded(),
       mapOptions: GoogleMaps.loaded() && options,
-      markers: markers
+      markers: self.markers
     }
   },
 
   render() {
-    console.log(this.data);
     if (this.data.loaded && this.data.mapOptions) {
       return <MyMap name="mymap" options={this.data.mapOptions} markers={this.data.markers}/>;
     }
@@ -85,8 +76,13 @@ const MyMap = React.createClass({
     GoogleMaps.ready(this.props.name, function(map) {
       // loop through and create a pin for each photo in passed in markers
       for(let photo of MyMap.markers) {
+        console.log('coordinates passed in by markers', photo.loc.coordinates);
+        const photoCoor = {
+          lat: photo.loc.coordinates[1],
+          lng: photo.loc.coordinates[0]
+        }
         var marker = new google.maps.Marker({
-          position: photo.loc,
+          position: photoCoor,
           map: map.instance,
           animation: google.maps.Animation.DROP,
           url: Meteor.absoluteUrl('photo/' + photo.id)
