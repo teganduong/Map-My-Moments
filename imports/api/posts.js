@@ -51,7 +51,7 @@ Meteor.methods({
   },
 
   /* maxDistance is in meters */  
-  'posts.nearby'(long, lat, maxDistance, maxRecords) {
+  'posts.nearby'(long, lat, maxDistance, maxRecords, callback) {
     /* sanitize data */
     check(maxRecords, Number);
     check(maxDistance, Number);

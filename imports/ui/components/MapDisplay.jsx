@@ -14,6 +14,25 @@ export const MapDisplay = React.createClass({
 
   getMeteorData() {
     var currentLoc = Geolocation.latLng();
+    var markers;
+    Meteor.call('posts.nearby', -122.4086548, 37.783406899999996, 300, 5,
+       function(err, result) {
+         // results is an array of post objects
+          if (err) { throw new Error ('Problem finding posts from database')}
+          markers = result;
+          console.log(markers);
+          // need to do map settings asyncronously so it works when markers have been retrieved
+          if(GoogleMaps.loaded() && currentLoc) {
+            var options = {
+              center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
+              zoom: MAP_ZOOM,
+              libraries: 'geometry,places',
+              key: GOOGLEAPI
+            };
+
+          }
+    });
+
     if(GoogleMaps.loaded() && currentLoc) {
       var options = {
         center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
@@ -21,9 +40,8 @@ export const MapDisplay = React.createClass({
         libraries: 'geometry,places',
         key: GOOGLEAPI
       };
-
-      var markers = dummyData;
     }
+    console.log(markers);
     return {
       loaded: GoogleMaps.loaded(),
       mapOptions: GoogleMaps.loaded() && options,
@@ -32,6 +50,7 @@ export const MapDisplay = React.createClass({
   },
 
   render() {
+    console.log(this.data);
     if (this.data.loaded && this.data.mapOptions) {
       return <MyMap name="mymap" options={this.data.mapOptions} markers={this.data.markers}/>;
     }
@@ -51,6 +70,9 @@ const MyMap = React.createClass({
     // setting markers to a variable in this scope 
     // so we have access to it in the googlemap functions belo
     MyMap.markers = this.props.markers;
+
+    //test to add information into the database, update information below to add more items
+    // Meteor.call('posts.insert', 'https://lh5.ggpht.com/wAGD0ZKPLCAfKtKxUzxhQY_19EoBhWak8PX52HmnIweJjV1bRGyZotUcJ_Vibgnd0A=h900', -122.4086548, 37.783406899999996);
 
     // GoogleMaps and methods made available through meteor package
     GoogleMaps.create({
