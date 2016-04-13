@@ -9,8 +9,30 @@ export class NewsFeed extends Component {
     super(props);
 
     this.state = {
-      posts: dummyData
+      posts: []
     }
+  }
+
+  renderPosts() {
+    var filteredPosts;
+    // Get current location first then call posts.nearby
+    var point = Geolocation.currentLocation() || { coords: { longitude: 0, latitude: 0 } };
+    Meteor.call('posts.nearby', point.coords.longitude,
+      point.coords.latitude, 300, 10,
+      function(err, result) {
+        // result is an array of post objects
+        console.log(err, result);
+        filteredPosts = result;
+      }
+    );
+    return filteredPosts.map((post) => {
+      return (
+        <NewsFeedEntry
+          key={post._id}
+          post={post}
+        />
+      );
+    });
   }
 
   render() {
