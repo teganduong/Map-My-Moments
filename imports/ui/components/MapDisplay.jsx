@@ -23,10 +23,14 @@ export const MapDisplay = React.createClass({
 
       var markers = {
         1: {
-          lat: 37.783406899999996, lng: -122.4086548
+          id: 1,
+          lat: 37.783406899999996, 
+          lng: -122.4086548
         },
         2: {
-          lat: 37.983406899999996, lng: -122.4086548
+          id: 2,
+          lat: 37.983406899999996, 
+          lng: -122.4086548
         }
       };
     }
@@ -66,7 +70,7 @@ const MyMap = React.createClass({
     GoogleMaps.ready(this.props.name, function(map) {
       console.log('My marker:', MyMap.markers[1]);
       var marker = new google.maps.Marker({
-        position: MyMap.markers[0],
+        position: MyMap.markers[1],
         map: map.instance
       });
     });
