@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import {mount} from 'react-mounter';
-import {Layout} from '../imports/ui/App.jsx';
-import {Signin} from '../imports/ui/Signin';
-import {Camera} from '../imports/ui/components/Camera';
-import {Logout} from '../imports/ui/components/LogOut.jsx';
-import {MapDisplay} from '../imports/ui/components/MapDisplay.jsx';
+
+import { mount } from 'react-mounter';
+import { Layout } from '../imports/ui/App.jsx';
+import { Signin } from '../imports/ui/Signin';
+import { Camera } from '../imports/ui/components/Camera';
+import { MapDisplay } from '../imports/ui/components/MapDisplay.jsx';
+import { Logout } from '../imports/ui/components/LogOut.jsx';
 import { NewsFeed } from '../imports/ui/components/NewsFeed';
 
 /* check if logged in before going to a new route *
