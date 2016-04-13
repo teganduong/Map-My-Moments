@@ -8,14 +8,27 @@ export class NewsFeedEntry extends Component {
     super(props);
 
     this.state = {
-      likes: this.props.post.likes
+      likes: this.props.post.likes,
+      liked: false
     };
-    this.incrementLikes = this.incrementLikes.bind(this);
+    this.toggleLike = this.toggleLike.bind(this);
+    this.updateLikes = this.updateLikes.bind(this);
   }
 
-  incrementLikes() {
-    this.setState({ likes: this.state.likes + 1 });
+  updateLikes() {
+    var likeCount = this.state.liked ? this.state.likes - 1 : this.state.likes + 1;
+    this.setState({
+      likes: likeCount
+    });
   }
+
+  toggleLike() {
+    this.setState({ 
+      liked: !this.state.liked,
+    });
+    this.updateLikes();
+  }
+
 
   render() {
     return (
@@ -28,7 +41,7 @@ export class NewsFeedEntry extends Component {
             <h4>{this.props.post.title}</h4>
             <p>Description</p>
             <p>
-              <Button bsStyle="primary" onClick={this.incrementLikes}>Like</Button>&nbsp;
+              <Button bsStyle="primary" onClick={this.toggleLike}>Like</Button>&nbsp;
             </p>
           </Thumbnail>
         </Col>
