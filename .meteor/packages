@@ -41,3 +41,4 @@ check                   # Check whether a value matches a pattern
 babel-compiler          # Parser/transpiler for ECMAScript 2015+ syntax
 meteor-tool
 
+less                    # The Less package provides a compiler build plugin for the Meteor build tool. It handles the compilation of *.less files to CSS.
