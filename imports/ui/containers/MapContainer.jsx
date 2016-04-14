@@ -17,7 +17,7 @@ export const MapContainer = React.createClass({
       return {
         markers: [],
         currentLoc: {},
-        radius: 0
+        radius: 100000
       };
     },
 
@@ -28,7 +28,6 @@ export const MapContainer = React.createClass({
   setMapRadius: function(mapInstance) {
     //change state so that radius adjusts for new map instances
     this.setState({radius: radiusOfCurrentZoom(mapInstance) });
-    console.log('new radius: ', this.state.radius);
   },
 
 
@@ -40,7 +39,7 @@ export const MapContainer = React.createClass({
       var markersSettings = {
         center: currentLoc,
         maxRecords: DEFAULT_MAX_POSTS,
-        radius: 100000
+        radius: this.state.radius
       };
 
       Meteor.call('posts.nearby', markersSettings.center.lng, markersSettings.center.lat, markersSettings.radius, markersSettings.maxRecords,

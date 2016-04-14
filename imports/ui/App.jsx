@@ -11,7 +11,7 @@ var contentStyle = {
 // define and export our Layout component
 export const Layout = ({content}) => (
   <div>
-    <h1>My App</h1>
+    <h1>Map My Moments</h1>
     <hr />
     <div style={contentStyle}>
       {content}
