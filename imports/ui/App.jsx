@@ -17,12 +17,13 @@ export const Layout = ({content}) => (
       {content}
     </div>
     <div>
-        <h3 className='text-center'>Map My Moments</h3>
-        <hr />
-        <div className='row row-centered'>
+      <h3 className='text-center'>Map My Moments</h3>
+      <hr />
+      <div className='row row-centered'>
         <div className='col-lg-4 text-center col-centered'>{content}</div>
-        <div><NavBar /></div>
-        </div>
+          <div><NavBar /></div>
+        <div className='bottomBuffer'></div>
+      </div>
     </div>
   </div>
 );
