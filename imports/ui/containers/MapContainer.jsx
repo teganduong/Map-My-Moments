@@ -25,9 +25,10 @@ export const MapContainer = React.createClass({
     this.setState({markers: newMarkers,});
   },
 
-  onMapZoomChange: function(mapInstance) {
+  setMapRadius: function(mapInstance) {
     //change state so that radius adjusts for new map instances
-    this.setState({radius: radiusOfCurrentZoom(mapInstance) })
+    this.setState({radius: radiusOfCurrentZoom(mapInstance) });
+    console.log('new radius: ', this.state.radius);
   },
 
 
@@ -76,7 +77,11 @@ export const MapContainer = React.createClass({
 
   render() {
     if (this.data.loaded && this.data.mapOptions) {   
-      return <MapDisplay name="mymap" options={this.data.mapOptions} markers={this.state.markers}/>;
+      return <MapDisplay 
+                name="mymap" 
+                options={this.data.mapOptions} 
+                markers={this.state.markers}
+                setMapRadius = {this.setMapRadius} />;
     }   
     return <div>Loading map...</div>;
   }

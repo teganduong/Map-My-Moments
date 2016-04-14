@@ -10,8 +10,9 @@ export const MapDisplay = React.createClass({
     name: React.PropTypes.string.isRequired,
     options: React.PropTypes.object.isRequired
   },
-  
+
   componentDidMount() {
+    const selfProps= this.props;
     // GoogleMaps and methods made available through meteor package
     GoogleMaps.create({
       name: this.props.name,
@@ -21,6 +22,11 @@ export const MapDisplay = React.createClass({
 
     // Once the map is ready, we can start setting the pins
     GoogleMaps.ready(this.props.name, function(map) {
+      //add listener for when zoom level changes 
+      //https://developers.google.com/maps/documentation/javascript/events#EventProperties
+      map.instance.addListener('zoom_changed', function() {
+        selfProps.setMapRadius(map.instance);
+      });
       // loop through and create a pin for each photo in passed in markers
       if(MapDisplay.markers.length) {
         for(let photo of MapDisplay.markers) {
@@ -28,6 +34,7 @@ export const MapDisplay = React.createClass({
             lat: photo.loc.coordinates[1],
             lng: photo.loc.coordinates[0]
           }
+
           var marker = new google.maps.Marker({
             position: photoCoor,
             map: map.instance,
