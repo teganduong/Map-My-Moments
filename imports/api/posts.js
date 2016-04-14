@@ -24,9 +24,10 @@ export const Posts = new Mongo.Collection('posts');
 Posts._ensureIndex({'loc':'2dsphere'});
 
 Meteor.methods({
-  'posts.insert'(picURL, long, lat) {
+  'posts.insert'(picURL, caption, long, lat) {
     /* sanitize data */
     check(picURL, String);
+    check(caption, String);
     check(long, Number);
     check(lat, Number);
  
@@ -40,6 +41,7 @@ Meteor.methods({
       owner: Meteor.userId(),
       username: Meteor.user().username,
       picURL: picURL,
+      caption: caption,
       likes: 0,
       loc: {
         type: 'Point',
@@ -57,7 +59,7 @@ Meteor.methods({
     check(maxDistance, Number);
     check(long, Number);
     check(lat, Number);
-    /* return the */   
+
     return Posts.find({
       loc: {
         $nearSphere: {
@@ -73,7 +75,14 @@ Meteor.methods({
         limit: maxRecords
       }
     ).fetch();
-  },  
+  },
+
+  'posts.updateLikes'(postId, likeCount) {
+    check(postId, String);
+    check(likeCount, Number);
+
+    return Posts.update(postId, { $set: { likes: likeCount } });
+  }  
 
 });
 

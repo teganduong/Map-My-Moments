@@ -1,6 +1,9 @@
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import React, { Component } from 'react';
-import Blaze from 'meteor/gadicc:blaze-react-component';
+import { Button, Input } from 'react-bootstrap';
+import { NewsFeedEntry } from './NewsFeedEntry';
 import '../../slingshot.js';
+
 var uploader = new Slingshot.Upload("myFileUploads");
  
 // Camera component - represents the camera view
@@ -8,11 +11,15 @@ export class Camera extends Component {
   constructor() {
     super();
     this.state = {
-      pictureURL: '',
-      pictureBlob: null,
+      pictureURL: '/assets/placeholder.jpg'
     };
-    // this.takePicture();
+    this.blob = null;
+    this.caption = '';
   }
+
+  componentDidMount() {
+    this.takePicture();
+  }  
 
   takePicture() {
     var self = this;
@@ -21,9 +28,9 @@ export class Camera extends Component {
       if (data) {
         var [blob, url] = self.b64Data2Blob(data);
         self.setState({
-          pictureBlob: blob,
-          pictureURL: url,
+          pictureURL: url
         });
+        self.blob = blob;
       }
     });
   }
@@ -60,35 +67,35 @@ export class Camera extends Component {
   }
 
   uploadPicture() {
-    // console.log(this.state.pictureURL);
-    uploader.send(this.state.pictureBlob, function(error, downloadUrl) {
+    var self = this;
+    uploader.send(this.blob, function(error, downloadUrl) {
       // Get location otherwise use 0 & 0 for place holder
       var point = Geolocation.currentLocation() || { coords: { longitude: 0, latitude: 0 } };
-      Meteor.call('posts.insert', downloadUrl, point.coords.longitude, point.coords.latitude, function(err, result) {
+      Meteor.call('posts.insert', downloadUrl, self.caption, point.coords.longitude, point.coords.latitude, function(err, result) {
         // Show success message to user and redirect to newsfeed later
         console.log(err, result);
+        FlowRouter.go('/');
       });
     });
   }
 
-  /* Raw picture data doesn't render properly with React on mobile.       *
-   * Use Blaze to render the raw data for now with CameraHelper template. */
+  captionChange(evt) {
+    /* store the caption text */
+    this.caption = evt.target.value;
+  }  
+
   render() {
-    var myImage = null;
-
-    if (this.state.pictureURL) {
-      myImage = (<img src={this.state.pictureURL} />);
-    }
-
+    var post = {
+      caption: (<Input type="text" placeholder="Caption" onChange={this.captionChange.bind(this)} />),
+      url: this.state.pictureURL,
+    };
     return (
-      <div className="container">
-        <h1>Post a moment</h1>
-        {myImage}
-        <div>
-          <button className="primary" onClick={this.takePicture.bind(this)}>Take Picture</button>
-          <button className="primary" onClick={this.uploadPicture.bind(this) }>Post Photo</button>
-        </div>
+      <div>
+        <NewsFeedEntry post={post} />
+        <Button onClick={this.takePicture.bind(this)}>Take Picture</Button>
+        <Button onClick={this.uploadPicture.bind(this)}>Post Photo</Button>
       </div>
     );
   }
+
 }

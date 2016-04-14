@@ -13,6 +13,6 @@ export default createContainer(({ params }) => {
     loading,
     newsfeed,
     newsfeedExists,
-    posts: newsfeedExists ? newsfeed.posts().fetch() : [],
+    posts: newsfeedExists ? Posts.find({}, { sort: { createdAt: -1 } }).fetch() : [],
   };
 }, NewsFeedPage);
