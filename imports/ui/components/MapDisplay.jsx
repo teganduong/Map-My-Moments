@@ -14,21 +14,54 @@ export const MapDisplay = React.createClass({
 
   markers: [],
 
+  getInitialState: function() {
+      return {markers: []};
+    },
+
+  onMarkersUpdate: function(newMarkers) {
+    this.setState({markers: newMarkers});
+  },
+
   getMeteorData() {
     var self = this;
     var currentLoc = Geolocation.latLng();
-    Meteor.call('posts.nearby', -122.4086548, 37.783406899999996, 10000, 5,
-      function(err, result) {
-       // results is an array of post objects
-      if (err) { throw new Error ('Problem finding posts from database')}
 
-      self.markers= result;
-    });
+    var markersSettings = {
+      center: currentLoc,
+      maxRecords: DEFAULT_MAX_POSTS,
+      radius: 10000
+    };
 
+      Meteor.call('posts.nearby', -122.4086666, 37.783357099999996, 10000, 10,
+        function(err, result) {
+         // results is an array of post objects
+        if (err) { throw new Error ('Problem finding posts from database')}
+        self.markers = result;
+        self.onMarkersUpdate(result);
+      });
     if(GoogleMaps.loaded() && currentLoc) {
+
+      
+    
+
+      // var handle = Meteor.subscribe('posts.nearbyPub', markersSettings);
+
+      // if( handle.ready() ) {
+      //   // Meteor.call('posts.nearby', markersSettings.center.lng, markersSettings.center.lat, markersSettings.radius, markersSettings.maxRecords,
+      //   //   function(err, result) {
+      //   //    // results is an array of post objects
+      //   //   if (err) { throw new Error ('Problem finding posts from database')}
+      //   //   self.markers = result;
+      //   // });
+      //   console.log('the subscription is ready!');
+      // }
+
+
+
+
       var options = {
         center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
-        zoom: MAP_ZOOM,
+        zoom: DEFAULT_MAP_ZOOM,
         libraries: 'geometry,places',
         key: GOOGLEAPI
       };
@@ -37,18 +70,18 @@ export const MapDisplay = React.createClass({
     return {
       loaded: GoogleMaps.loaded(),
       mapOptions: GoogleMaps.loaded() && options,
-      markers: self.markers
+      markers: self.markers,
+      markerCount: self.markers.length
     }
   },
 
   render() {
     if (this.data.loaded && this.data.mapOptions) {
-      return <MyMap name="mymap" options={this.data.mapOptions} markers={this.data.markers}/>;
-    }
-    
+      return <MyMap name="mymap" options={this.data.mapOptions} markers={this.state.markers}/>;
+    }   
     return <div>Loading map...</div>;
-
   }
+
 });
 
 const MyMap = React.createClass({
@@ -75,23 +108,28 @@ const MyMap = React.createClass({
     // Once the map is ready, we can start setting the pins
     GoogleMaps.ready(this.props.name, function(map) {
       // loop through and create a pin for each photo in passed in markers
-      for(let photo of MyMap.markers) {
-        console.log('coordinates passed in by markers', photo.loc.coordinates);
-        const photoCoor = {
-          lat: photo.loc.coordinates[1],
-          lng: photo.loc.coordinates[0]
+      if(MyMap.markers.length) {
+        for(let photo of MyMap.markers) {
+          const photoCoor = {
+            lat: photo.loc.coordinates[1],
+            lng: photo.loc.coordinates[0]
+          }
+          var marker = new google.maps.Marker({
+            position: photoCoor,
+            map: map.instance,
+            animation: google.maps.Animation.DROP,
+            url: Meteor.absoluteUrl('photo/' + photo.id)
+          });
+          google.maps.event.addListener(marker, 'click', function() {
+              window.location.href = this.url;
+          });
         }
-        var marker = new google.maps.Marker({
-          position: photoCoor,
-          map: map.instance,
-          animation: google.maps.Animation.DROP,
-          url: Meteor.absoluteUrl('photo/' + photo.id)
-        });
-        google.maps.event.addListener(marker, 'click', function() {
-            window.location.href = this.url;
-        });
       }
     });
+  },
+
+  componentWillReceiveProps() {
+
   },
 
   componentWillUnmount() {
@@ -119,6 +157,7 @@ const mapsStyles = {
   padding: 4
 };
 
-const MAP_ZOOM = 10;
+export const DEFAULT_MAP_ZOOM = 10;
+export const DEFAULT_MAX_POSTS = 10;
 
 export {mapsStyles};
