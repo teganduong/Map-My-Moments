@@ -89,7 +89,7 @@ const MyMap = React.createClass({
 
 const mapsStyles = {
   width: window.innerWidth,
-  height: window.innerHeight,
+  height: (window.innerHeight - 130),
   left: 0,
   top: 0,
 
