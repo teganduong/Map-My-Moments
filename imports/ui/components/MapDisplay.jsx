@@ -32,6 +32,7 @@ export const MapDisplay = React.createClass({
       radius: 10000
     };
 
+    if(GoogleMaps.loaded() && currentLoc) {
       Meteor.call('posts.nearby', -122.4086666, 37.783357099999996, 10000, 10,
         function(err, result) {
          // results is an array of post objects
@@ -39,7 +40,6 @@ export const MapDisplay = React.createClass({
         self.markers = result;
         self.onMarkersUpdate(result);
       });
-    if(GoogleMaps.loaded() && currentLoc) {
 
       
     
@@ -76,7 +76,7 @@ export const MapDisplay = React.createClass({
   },
 
   render() {
-    if (this.data.loaded && this.data.mapOptions) {
+    if (this.data.loaded && this.data.mapOptions) {      
       return <MyMap name="mymap" options={this.data.mapOptions} markers={this.state.markers}/>;
     }   
     return <div>Loading map...</div>;
@@ -93,8 +93,6 @@ const MyMap = React.createClass({
   componentDidMount() {
     // setting markers to a variable in this scope 
     // so we have access to it in the googlemap functions belo
-    MyMap.markers = this.props.markers;
-
     //test to add information into the database, update information below to add more items
     // Meteor.call('posts.insert', 'https://lh5.ggpht.com/wAGD0ZKPLCAfKtKxUzxhQY_19EoBhWak8PX52HmnIweJjV1bRGyZotUcJ_Vibgnd0A=h900', -122.4086548, 37.783406899999996);
 
@@ -108,6 +106,7 @@ const MyMap = React.createClass({
     // Once the map is ready, we can start setting the pins
     GoogleMaps.ready(this.props.name, function(map) {
       // loop through and create a pin for each photo in passed in markers
+      // console.log(Mymap.markers);
       if(MyMap.markers.length) {
         for(let photo of MyMap.markers) {
           const photoCoor = {
@@ -129,7 +128,8 @@ const MyMap = React.createClass({
   },
 
   componentWillReceiveProps() {
-
+    // need to update the markers when props change
+    MyMap.markers = this.props.markers;
   },
 
   componentWillUnmount() {

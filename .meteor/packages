@@ -41,4 +41,3 @@ check                   # Check whether a value matches a pattern
 babel-compiler          # Parser/transpiler for ECMAScript 2015+ syntax
 meteor-tool
 
-autopublish
