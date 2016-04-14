@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Grid, Row, Col, Button, Thumbnail } from 'react-bootstrap';
-
+import { Meteor } from 'meteor/meteor';
 
 export class NewsFeedEntry extends Component {
   constructor(props) {
@@ -12,7 +12,6 @@ export class NewsFeedEntry extends Component {
       liked: false
     };
     this.toggleLike = this.toggleLike.bind(this);
-    this.updateLikes = this.updateLikes.bind(this);
   }
 
   toggleLike() {
@@ -24,9 +23,8 @@ export class NewsFeedEntry extends Component {
 
   updateLikes() {
     var likeCount = this.state.liked ? this.state.likes - 1 : this.state.likes + 1;
-    this.setState({
-      likes: likeCount
-    });
+    this.setState({ likes: likeCount });
+    Meteor.call('posts.updateLikes', this.props.post._id, likeCount);
   }
 
   render() {

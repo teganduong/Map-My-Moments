@@ -76,6 +76,13 @@ Meteor.methods({
         limit: maxRecords
       }
     ).fetch();
-  },  
+  },
+
+  'posts.updateLikes'(postId, likeCount) {
+    check(postId, String);
+    check(likeCount, Number);
+
+    return Posts.update(postId, { $set: { likes: likeCount } });
+  }  
 
 });
