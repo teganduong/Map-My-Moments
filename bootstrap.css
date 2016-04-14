@@ -7005,3 +7005,6 @@ a.list-group-item-danger.active:focus {
 .popover-title {
   border: none;
 }
+.bottomBuffer { 
+  padding-top: 50px;
+ }
