@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {GOOGLEAPI} from '../../api/google-key.js';
 import { MapDisplay, DEFAULT_MAX_POSTS, DEFAULT_MAP_ZOOM } from '../components/MapDisplay.jsx';
+import { radiusOfCurrentZoom } from '../../api/utils';
 
 // code adapted from sample React demo by creator of map package
 // https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
@@ -15,13 +16,20 @@ export const MapContainer = React.createClass({
   getInitialState: function() {
       return {
         markers: [],
-        currentLoc: {}
+        currentLoc: {},
+        radius: 0
       };
     },
 
   onMarkersUpdate: function(newMarkers) {
     this.setState({markers: newMarkers,});
   },
+
+  onMapZoomChange: function(mapInstance) {
+    //change state so that radius adjusts for new map instances
+    this.setState({radius: radiusOfCurrentZoom(mapInstance) })
+  },
+
 
   getMeteorData() {
     var self = this;

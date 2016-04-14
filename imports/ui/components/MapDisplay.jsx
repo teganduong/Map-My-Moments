@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {GOOGLEAPI} from '../../api/google-key.js';
 import { dummyData } from '../../api/dummyData.js';
-import { radiusOfCurrentZoom } from '../../api/utils';
 
 // code adapted from sample React demo by creator of map package
 // https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
@@ -23,7 +22,6 @@ export const MapDisplay = React.createClass({
     // Once the map is ready, we can start setting the pins
     GoogleMaps.ready(this.props.name, function(map) {
       // loop through and create a pin for each photo in passed in markers
-      console.log('returning the radius in meters', radiusOfCurrentZoom(map.instance));
       if(MapDisplay.markers.length) {
         for(let photo of MapDisplay.markers) {
           const photoCoor = {
