@@ -28,12 +28,13 @@ export class NewsFeedEntry extends Component {
   }
 
   render() {
+    const likeText = this.state.likes === 1 ? 'like': 'likes'; 
     return (
       <Grid>
         <Row>
         <Col xs={12} md={4}>
           <Thumbnail src={this.props.post.picURL} alt='200x200'>
-            <label>{this.state.likes} likes</label>
+            <label>{this.state.likes} {likeText}</label>
             <p>{this.props.post.username}</p>
             <h4>{this.props.post.caption}</h4>
             <p>
