@@ -26,6 +26,7 @@ export const MapContainer = React.createClass({
   getMeteorData() {
     var self = this;
     var currentLoc = Geolocation.latLng();
+   
 
     if(GoogleMaps.loaded() && currentLoc) {
       var markersSettings = {
@@ -67,6 +68,7 @@ export const MapContainer = React.createClass({
   },
 
   render() {
+    console.log(this.data);
     if (this.data.loaded && this.data.mapOptions) {   
       return <MapDisplay name="mymap" options={this.data.mapOptions} markers={this.state.markers}/>;
     }   
