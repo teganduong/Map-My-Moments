@@ -20,6 +20,11 @@ FlowRouter.triggers.enter(function(context, redirect) {
   }
 });
 
+Accounts.onLogin(function () {  
+  FlowRouter.go('NewsFeed')
+})
+
+
 FlowRouter.route("/", {
   name: 'NewsFeed',
   action() {
