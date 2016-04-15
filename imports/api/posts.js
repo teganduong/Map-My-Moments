@@ -72,7 +72,8 @@ Meteor.methods({
       }
     },
       {
-        limit: maxRecords
+        limit: maxRecords,
+        sort: {createdAt: -1}
       }
     ).fetch();
   },

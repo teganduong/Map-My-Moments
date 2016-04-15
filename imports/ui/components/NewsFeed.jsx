@@ -50,8 +50,3 @@ export class NewsFeed extends Component {
     );
   }
 }
-
-
-
-
-

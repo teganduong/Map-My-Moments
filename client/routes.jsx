@@ -9,8 +9,11 @@ import { MapContainer } from '../imports/ui/containers/MapContainer.jsx';
 import { Logout } from '../imports/ui/components/LogOut.jsx';
 import { NewsFeed } from '../imports/ui/components/NewsFeed';
 
-/* hotstart geolocation so we can get a fix when we need it */
-Geolocation.currentLocation();
+Meteor.startup(function() {
+  // Potentially prompts the user to enable location services. We do this early
+  // on in order to have the most accurate location by the time the user checks newsfeed
+  Geolocation.currentLocation();
+});
 
 /* check if logged in before going to a new route *
  * if not logged in then redirect to signin page  */
