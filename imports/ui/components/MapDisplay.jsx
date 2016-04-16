@@ -23,11 +23,14 @@ export const MapDisplay = React.createClass({
     GoogleMaps.ready(this.props.name, function(map) {
       //set initial radius of map instance
       selfProps.setMapRadius(map.instance);
+      selfProps.setMarkers();
 
       //add listener for when zoom level changes 
       //https://developers.google.com/maps/documentation/javascript/events#EventProperties
       map.instance.addListener('zoom_changed', function() {
         selfProps.setMapRadius(map.instance);
+        selfProps.setMarkers();
+        console.log('here are the new markers: ', MapDisplay.markers);
       });
 
       // loop through and create a pin for each photo in passed in markers
