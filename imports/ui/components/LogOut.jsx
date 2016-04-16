@@ -25,7 +25,7 @@ export class Logout extends Component {
       <div>
         Are you sure you want to log out?
         <br />
-        <button onClick={this.handleClick}>Yeah, do it.</button>
+        <button onClick={this.handleClick} className='btn-primary'>Yeah, do it.</button>
       </div>
     )
   }
