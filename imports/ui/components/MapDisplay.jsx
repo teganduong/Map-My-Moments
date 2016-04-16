@@ -37,7 +37,6 @@ export const MapDisplay = React.createClass({
   },
 
   componentWillReceiveProps() {
-    // this.props.resetMarkers();
     this.generateMarkers();
   },
 
@@ -48,6 +47,11 @@ export const MapDisplay = React.createClass({
 
       // loop through and create a pin for each photo in passed in markers
       if(selfProps.photos.length) {
+        //first clear map of markers
+        for(let marker of selfProps.markers) {
+          marker.setMap(null);
+        }
+
         for(let photo of selfProps.photos) {
           const photoCoor = {
             lat: photo.loc.coordinates[1],
