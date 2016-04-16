@@ -8,6 +8,7 @@ import { Camera } from '../imports/ui/components/Camera';
 import { MapContainer } from '../imports/ui/containers/MapContainer.jsx';
 import { Logout } from '../imports/ui/components/LogOut.jsx';
 import { NewsFeedContainer } from '../imports/ui/containers/NewsFeedContainer';
+import { PhotoViewer } from '../imports/ui/components/PhotoViewer';
 
 Meteor.startup(function() {
   // Potentially prompts the user to enable location services. We do this early
