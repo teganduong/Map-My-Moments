@@ -31,8 +31,8 @@ export class NewsFeedEntry extends Component {
     return (
       <Grid>
         <Row>
-        <Col xs={10} md={4} xsOffset={1}>
-          <Thumbnail src={this.props.post.picURL} alt='150x200'>
+        <Col xs={12} md={4}>
+          <Thumbnail src={this.props.post.picURL} alt='200x200'>
             <label>{this.state.likes} likes</label>
             <p>{this.props.post.username}</p>
             <h4>{this.props.post.caption}</h4>
