@@ -68,7 +68,6 @@ export const MapContainer = React.createClass({
   },
 
   render() {
-    console.log(this.data);
     if (this.data.loaded && this.data.mapOptions) {   
       return <MapDisplay name="mymap" options={this.data.mapOptions} markers={this.state.markers}/>;
     }   
