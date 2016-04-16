@@ -11,7 +11,6 @@ export const MapDisplay = React.createClass({
   },
 
   componentDidMount() {
-    const selfProps= this.props;
     // GoogleMaps and methods made available through meteor package
     GoogleMaps.create({
       name: this.props.name,
@@ -19,22 +18,31 @@ export const MapDisplay = React.createClass({
       options: this.props.options
     });
 
+    this.generateMarkers();
+  },
+
+  componentWillReceiveProps() {
+    this.generateMarkers();
+  },
+
+  generateMarkers() {
+    const selfProps= this.props;
     // Once the map is ready, we can start setting the pins
     GoogleMaps.ready(this.props.name, function(map) {
       //set initial radius and markers of map instance
       selfProps.setMapRadius(map.instance);
-      selfProps.setMarkers();
+      selfProps.setPhotos();
 
       //add listener for when zoom level changes 
       //https://developers.google.com/maps/documentation/javascript/events#EventProperties
       map.instance.addListener('zoom_changed', function() {
         selfProps.setMapRadius(map.instance);
-        selfProps.setMarkers();
+        selfProps.setPhotos();
       });
 
       // loop through and create a pin for each photo in passed in markers
-      if(MapDisplay.photos.length) {
-        for(let photo of MapDisplay.photos) {
+      if(selfProps.photos.length) {
+        for(let photo of selfProps.photos) {
           const photoCoor = {
             lat: photo.loc.coordinates[1],
             lng: photo.loc.coordinates[0]
@@ -49,37 +57,11 @@ export const MapDisplay = React.createClass({
           google.maps.event.addListener(marker, 'click', function() {
               window.location.href = this.url;
           });
+
+          selfProps.addMarker(marker);
         }
       }
     });
-  },
-
-  componentWillReceiveProps() {
-    // need to update the markers when props change
-    MapDisplay.photos = this.props.photos;
-    // This will trigger when new marker added to database, can test with live console log
-    // problem is still rendering the pin to the map
-    GoogleMaps.ready(this.props.name, function(map) {
-      for(let photo of MapDisplay.photos) {
-        console.log('here is the photo we will make marker from: ', photo);
-        const photoCoor = {
-          lat: photo.loc.coordinates[1],
-          lng: photo.loc.coordinates[0]
-        }
-
-        var marker = new google.maps.Marker({
-          position: photoCoor,
-          map: map.instance,
-          animation: google.maps.Animation.DROP,
-          url: Meteor.absoluteUrl('photo/' + photo.id)
-        });
-        google.maps.event.addListener(marker, 'click', function() {
-            window.location.href = this.url;
-        });
-        console.log('and here is the marker: ', marker);
-      }
-    });
-
   },
 
   componentWillUnmount() {

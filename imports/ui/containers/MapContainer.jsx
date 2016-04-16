@@ -16,19 +16,26 @@ export const MapContainer = React.createClass({
   getInitialState: function() {
       return {
         photos: [],
+        markers: [],
         radius: 100000,
         zoom: DEFAULT_MAP_ZOOM
       };
     },
 
   //This method updates the markers of the container when called (e.g. zoom change)
-  setMarkers: function() {
+  setPhotos: function() {
     let self = this;
     Meteor.call('posts.nearby', this.data.currentLoc.lng, this.data.currentLoc.lat, this.state.radius, DEFAULT_MAX_POSTS,
             function(err, result) {
             if (err) { throw new Error ('Problem finding posts from database')}
             self.setState({photos: result});
           });
+  },
+
+  addMarker: function(newMarker) {
+    let markers = this.state.markers;
+    markers.push(newMarker);
+    this.setState({markers: markers});
   },
 
   setMapRadius: function(mapInstance) {
@@ -86,8 +93,10 @@ export const MapContainer = React.createClass({
                 name="mymap" 
                 options={this.data.mapOptions} 
                 photos={this.state.photos}
+                markers={this.state.markers}
                 setMapRadius = {this.setMapRadius}
-                setMarkers= {this.setMarkers} />;
+                setPhotos= {this.setPhotos} 
+                addMarker= {this.addMarker}/>;
     }   
     return <div>Loading map...</div>;
   }
