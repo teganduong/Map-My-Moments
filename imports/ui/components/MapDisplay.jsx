@@ -100,5 +100,5 @@ const mapsStyles = {
   padding: 4
 };
 
-export const DEFAULT_MAP_ZOOM = 12;
+export const DEFAULT_MAP_ZOOM = 15;
 export const DEFAULT_MAX_POSTS = 10;
