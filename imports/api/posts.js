@@ -83,7 +83,12 @@ Meteor.methods({
     check(likeCount, Number);
 
     return Posts.update(postId, { $set: { likes: likeCount } });
-  }  
+  },
+
+  'posts.getPostByID'(postId) {
+    check(postId, String);
+    return Posts.findOne({_id: postId});
+  }    
 
 });
 
