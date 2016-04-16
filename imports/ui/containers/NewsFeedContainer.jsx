@@ -3,20 +3,19 @@ import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { NewsFeed } from '../components/NewsFeed';
 
-
 export const NewsFeedContainer = React.createClass({
 
   mixins: [ReactMeteorData],
-
-  componentDidMount() {
-    this.getMeteorData();
-  },
 
   getInitialState: function() {
       return {
         posts: []
       };
-    },
+  },
+
+  componentDidMount() {
+    this.onPostsUpdate();
+  },
 
   onPostsUpdate: function(newPosts) {
     this.setState({posts: newPosts});

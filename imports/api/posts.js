@@ -39,7 +39,7 @@ Meteor.methods({
     /* Always insert */
     return Posts.insert({
       owner: Meteor.userId(),
-      username: Meteor.user().username,
+      username: Meteor.user().username || Meteor.user().profile.name,
       picURL: picURL,
       caption: caption,
       likes: 0,
