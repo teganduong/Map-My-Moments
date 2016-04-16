@@ -17,17 +17,18 @@ export const MapContainer = React.createClass({
       return {
         markers: [],
         currentLoc: {},
-        radius: 100000
+        radius: 100000,
+        zoom: DEFAULT_MAP_ZOOM
       };
     },
 
   onMarkersUpdate: function(newMarkers) {
-    this.setState({markers: newMarkers,});
+    // this.setState({markers: newMarkers,});
   },
 
   setMapRadius: function(mapInstance) {
     //change state so that radius adjusts for new map instances
-    this.setState({radius: radiusOfCurrentZoom(mapInstance) });
+    this.setState({radius: radiusOfCurrentZoom(mapInstance), zoom: mapInstance.zoom });
   },
 
 
@@ -62,7 +63,7 @@ export const MapContainer = React.createClass({
 
       var options = {
         center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
-        zoom: DEFAULT_MAP_ZOOM,
+        zoom: this.state.zoom,
         libraries: 'geometry,places',
         key: GOOGLEAPI
       };
