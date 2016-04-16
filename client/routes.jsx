@@ -7,10 +7,13 @@ import { Signin } from '../imports/ui/Signin';
 import { Camera } from '../imports/ui/components/Camera';
 import { MapContainer } from '../imports/ui/containers/MapContainer.jsx';
 import { Logout } from '../imports/ui/components/LogOut.jsx';
-import { NewsFeed } from '../imports/ui/components/NewsFeed';
+import { NewsFeedContainer } from '../imports/ui/containers/NewsFeedContainer';
 
-/* hotstart geolocation so we can get a fix when we need it */
-Geolocation.currentLocation();
+Meteor.startup(function() {
+  // Potentially prompts the user to enable location services. We do this early
+  // on in order to have the most accurate location by the time the user checks newsfeed
+  Geolocation.currentLocation();
+});
 
 /* check if logged in before going to a new route *
  * if not logged in then redirect to signin page  */
@@ -20,11 +23,16 @@ FlowRouter.triggers.enter(function(context, redirect) {
   }
 });
 
+Accounts.onLogin(function () {  
+  FlowRouter.go('NewsFeed')
+})
+
+
 FlowRouter.route("/", {
   name: 'NewsFeed',
   action() {
     mount(Layout, {
-      content: (<NewsFeed />)
+      content: (<NewsFeedContainer />)
     });
   }
 });

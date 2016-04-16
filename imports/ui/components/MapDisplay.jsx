@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {GOOGLEAPI} from '../../api/google-key.js';
 import { dummyData } from '../../api/dummyData.js';
 
 // code adapted from sample React demo by creator of map package
@@ -92,7 +91,7 @@ export const MapDisplay = React.createClass({
 
 const mapsStyles = {
   width: window.innerWidth,
-  height: window.innerHeight,
+  height: (window.innerHeight - 130),
   left: 0,
   top: 0,
 

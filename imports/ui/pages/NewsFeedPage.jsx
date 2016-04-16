@@ -19,12 +19,6 @@ export class NewsFeedPage extends Component {
     }
   }
 
-  onNewsFeedEntryClick(post) {
-    this.setState({
-      currentPost: post
-    });
-  }
-
   render() {
     const { newsfeed, feedExists, loading, posts } = this.props;
     const { currentPost } = this.state;
@@ -38,7 +32,6 @@ export class NewsFeedPage extends Component {
       Posts = (
         <Message
           title="No moments taken at this location"
-          subtitle="Add new moments using the field above"
         />
       );
     } 

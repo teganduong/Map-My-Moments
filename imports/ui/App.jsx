@@ -11,13 +11,15 @@ var contentStyle = {
 // define and export our Layout component
 export const Layout = ({content}) => (
   <div>
-    <h1>Map My Moments</h1>
+    <h3 className='text-center'>Map My Moments</h3>
     <hr />
-    <div style={contentStyle}>
-      {content}
-    </div>
-    <div>
-      <NavBar />
+    <div className='row row-centered'>
+      <div className='col-lg-4 text-center col-centered' style={contentStyle}>
+        {content}
+      </div>
+      <div>
+        <NavBar />
+      </div>
     </div>
   </div>
 );

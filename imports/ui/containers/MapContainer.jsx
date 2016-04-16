@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {GOOGLEAPI} from '../../api/google-key.js';
+import {GOOGLEAPI} from '../../api/google-keys.js';
 import { MapDisplay, DEFAULT_MAX_POSTS, DEFAULT_MAP_ZOOM } from '../components/MapDisplay.jsx';
 import { radiusOfCurrentZoom } from '../../api/utils';
 
@@ -34,6 +34,7 @@ export const MapContainer = React.createClass({
   getMeteorData() {
     var self = this;
     var currentLoc = Geolocation.latLng();
+   
 
     if(GoogleMaps.loaded() && currentLoc) {
       var markersSettings = {
