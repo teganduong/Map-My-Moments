@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {GOOGLEAPI} from '../../api/google-key.js';
+import {GOOGLEAPI} from '../../api/google-keys.js';
 import { MapDisplay, DEFAULT_MAX_POSTS, DEFAULT_MAP_ZOOM } from '../components/MapDisplay.jsx';
 
 // code adapted from sample React demo by creator of map package

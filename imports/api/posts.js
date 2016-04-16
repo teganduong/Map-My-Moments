@@ -31,7 +31,7 @@ Meteor.methods({
     check(long, Number);
     check(lat, Number);
  
-    // Make sure the user is logged in before inserting a task
+    // Make sure the user is logged in before inserting a post
     if (! Meteor.userId()) {
       throw new Meteor.Error('not-authorized');
     }
