@@ -38,6 +38,15 @@ export const MapContainer = React.createClass({
     this.setState({markers: markers});
   },
 
+  //need to reset markers when map state changes, e.g. zoom change
+  resetMarkers: function() {
+    let markers = this.state.markers;
+    for (marker of markers) {
+      marker.setMap(null);
+    }
+    this.setState({markers: []});
+  },
+
   setMapRadius: function(mapInstance) {
     //change state so that radius adjusts for new map instances
     this.setState({radius: radiusOfCurrentZoom(mapInstance), zoom: mapInstance.zoom });
@@ -96,7 +105,8 @@ export const MapContainer = React.createClass({
                 markers={this.state.markers}
                 setMapRadius = {this.setMapRadius}
                 setPhotos= {this.setPhotos} 
-                addMarker= {this.addMarker}/>;
+                addMarker= {this.addMarker}
+                resetMarkers= {this.resetMarkers} />;
     }   
     return <div>Loading map...</div>;
   }

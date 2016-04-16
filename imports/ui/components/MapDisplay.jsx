@@ -12,21 +12,13 @@ export const MapDisplay = React.createClass({
 
   componentDidMount() {
     // GoogleMaps and methods made available through meteor package
+    const selfProps= this.props;
     GoogleMaps.create({
       name: this.props.name,
       element: document.getElementById('map-container'),
       options: this.props.options
     });
 
-    this.generateMarkers();
-  },
-
-  componentWillReceiveProps() {
-    this.generateMarkers();
-  },
-
-  generateMarkers() {
-    const selfProps= this.props;
     // Once the map is ready, we can start setting the pins
     GoogleMaps.ready(this.props.name, function(map) {
       //set initial radius and markers of map instance
@@ -39,6 +31,20 @@ export const MapDisplay = React.createClass({
         selfProps.setMapRadius(map.instance);
         selfProps.setPhotos();
       });
+    });
+
+    this.generateMarkers();
+  },
+
+  componentWillReceiveProps() {
+    // this.props.resetMarkers();
+    this.generateMarkers();
+  },
+
+  generateMarkers() {
+    const selfProps= this.props;
+    // Once the map is ready, we can start setting the pins
+    GoogleMaps.ready(this.props.name, function(map) {
 
       // loop through and create a pin for each photo in passed in markers
       if(selfProps.photos.length) {
@@ -54,6 +60,7 @@ export const MapDisplay = React.createClass({
             animation: google.maps.Animation.DROP,
             url: Meteor.absoluteUrl('photo/' + photo.id)
           });
+
           google.maps.event.addListener(marker, 'click', function() {
               window.location.href = this.url;
           });
