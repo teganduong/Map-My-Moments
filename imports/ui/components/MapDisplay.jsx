@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {GOOGLEAPI} from '../../api/google-key.js';
 import { dummyData } from '../../api/dummyData.js';
 
 // code adapted from sample React demo by creator of map package
@@ -32,7 +31,7 @@ export const MapDisplay = React.createClass({
             position: photoCoor,
             map: map.instance,
             animation: google.maps.Animation.DROP,
-            url: Meteor.absoluteUrl('photo/' + photo.id)
+            url: Meteor.absoluteUrl('photo/' + photo._id)
           });
           google.maps.event.addListener(marker, 'click', function() {
               window.location.href = this.url;
