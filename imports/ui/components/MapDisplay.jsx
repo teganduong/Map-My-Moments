@@ -62,7 +62,7 @@ export const MapDisplay = React.createClass({
             position: photoCoor,
             map: map.instance,
             animation: google.maps.Animation.DROP,
-            url: Meteor.absoluteUrl('photo/' + photo.id)
+            url: Meteor.absoluteUrl('photo/' + photo._id)
           });
 
           google.maps.event.addListener(marker, 'click', function() {
