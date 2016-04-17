@@ -66,7 +66,7 @@ export const GOOGLEAPI = 'YOUR-GOOGLE-API-KEY-HERE';
 
 ## Usage
 
-Once the dependencies are installed, you can start the application with:
+Once the dependencies are installed and configuration keys are setup, you can start the application with:
 ```sh
 meteor run --settings=config.json
 ```
