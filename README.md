@@ -14,6 +14,7 @@
 1. [Requirements](#requirements)
 1. [Setup](#setup)
     1. [Installing Dependencies](#installing-dependencies)
+    1. [Configure Keys](#configure-keys)
 1. [Usage](#Usage)
 1. [Helpful Links](#helpful-links)
 1. [Contributing](#contributing)
@@ -50,6 +51,16 @@ Clone this repo to your local work station and from within the root directory:
 
 ```sh
 meteor npm install
+```
+
+### Configure Keys
+
+#### Google API Key
+- Setup a [Google API key](https://developers.google.com/maps/documentation/javascript/get-api-key#key) 
+- Create a new file to store this key in: `imports/api/google-keys.js`
+- Copy and paste this into your google-keys.js file:
+```sh
+export const GOOGLEAPI = 'YOUR-GOOGLE-API-KEY-HERE';
 ```
 
 
