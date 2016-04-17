@@ -11,11 +11,10 @@
 ## Table of Contents
 
 1. [Installation](#installation)
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Setup](#setup)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
+1. [Usage](#Usage)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
@@ -35,26 +34,33 @@ curl https://install.meteor.com/ | sh
 
 On Windows? [Go here for further instructions](https://www.meteor.com/install)
 
-## Usage
-
-> Some usage instructions
 
 ## Requirements
 
-- Node 0.10.x
+- Meteor 1.3
+- Node 4.4.2
+- React ^15.0.0
 
 
-## Development
+## Setup
 
 ### Installing Dependencies
 
-From within the root directory:
+Clone this repo to your local work station and from within the root directory:
 
 ```sh
-sudo npm install -g bower
-npm install
-bower install
+meteor npm install
 ```
+
+
+## Usage
+
+Once the dependencies are installed, you can start the application with:
+```sh
+meteor run --settings=config.json
+```
+Open your web browser and go to 'http://localhost:3000' to see the app running.
+
 
 ### Roadmap
 
