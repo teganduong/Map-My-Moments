@@ -88,7 +88,7 @@ FlowRouter.route("/camera", {
 FlowRouter.notFound = {
   action() {
     mount(Layout, {
-          content: (<NotFound />)
+          content: (<NewsFeedContainer />)
         });
   }
 };

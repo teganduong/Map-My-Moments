@@ -25,11 +25,14 @@ export const MapDisplay = React.createClass({
       //set initial radius and markers of map instance
       selfProps.setMapRadius(map.instance);
       selfProps.setPhotos();
-      console.log('map instance:', map);
+
+      //set map so avaialble to rest of component
       selfProps.setMapInstance(map);
+
       //add listener for when zoom level changes 
       //https://developers.google.com/maps/documentation/javascript/events#EventProperties
       map.instance.addListener('zoom_changed', function() {
+        console.log('go!');
         selfProps.setMapRadius(map.instance);
         selfProps.setPhotos();
       });
@@ -40,52 +43,22 @@ export const MapDisplay = React.createClass({
   },
 
   componentWillReceiveProps() {
-    console.log('will receive props fired');
     this.generateMarkers();
   },
 
   generateMarkers() {
     const selfProps= this.props;
-    
+    console.log('these are the markers: ', selfProps.markers);
+
+    //go through existing markers and set map to current map so they display
     for(let marker of selfProps.markers) {
-      console.log('marker: ', marker);
+      marker.setMap(null);
       marker.setMap(selfProps.map.instance);
+      const photoUrl = marker.url;
+      google.maps.event.addListener(marker, 'click', function() {
+          window.location.href = photoUrl;
+      });
     }
-    // clear map of any markers currently set
-    // for(let marker of selfProps.markers) {
-    //       marker.setMap(null);
-    // }
-
-    // Once the map is ready, we can start setting the pins
-    // GoogleMaps.ready(this.props.name, function(map) {
-    //   // loop through and create a pin for each photo in passed in markers
-    //   if(selfProps.photos.length) {
-    //     //first clear map of markers
-    //     for(let marker of selfProps.markers) {
-    //       // marker.setMap(null);
-    //     }
-
-    //     for(let photo of selfProps.photos) {
-    //       const photoCoor = {
-    //         lat: photo.loc.coordinates[1],
-    //         lng: photo.loc.coordinates[0]
-    //       }
-
-    //       var marker = new google.maps.Marker({
-    //         position: photoCoor,
-    //         map: map.instance,
-    //         animation: google.maps.Animation.DROP,
-    //         url: Meteor.absoluteUrl('photo/' + photo._id)
-    //       });
-
-    //       google.maps.event.addListener(marker, 'click', function() {
-    //           window.location.href = this.url;
-    //       });
-
-    //       selfProps.addMarker(marker);
-    //     }
-    //   }
-    // });
   },
 
   componentWillUnmount() {
