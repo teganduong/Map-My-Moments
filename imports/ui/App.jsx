@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { NavBar } from './components/NavBar.jsx'
-import { NewsFeed } from './components/NewsFeed'
 
 /* add padding to the bottom of the content div *
  * so the navbar doesn't overlap the content    */

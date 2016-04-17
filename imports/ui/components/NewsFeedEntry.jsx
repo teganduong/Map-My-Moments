@@ -28,17 +28,24 @@ export class NewsFeedEntry extends Component {
   }
 
   render() {
+    const likeText = this.state.likes === 1 ? 'like': 'likes'; 
+    const likedButton = this.state.liked ? 'Liked': 'Like';
     return (
       <Grid>
         <Row>
         <Col xs={12} md={4}>
           <Thumbnail src={this.props.post.picURL} alt='200x200'>
-            <label>{this.state.likes} likes</label>
-            <p>{this.props.post.username}</p>
-            <h4>{this.props.post.caption}</h4>
-            <p>
-              <Button bsStyle="primary" onClick={this.toggleLike}>Like</Button>&nbsp;
-            </p>
+            <div className='text-left'>
+              <label>
+                <span className="glyphicon glyphicon-heart" aria-hidden="true"> </span>
+                <span> {this.state.likes} {likeText}</span>
+              </label>
+              <p>{this.props.post.username}</p>
+              <h4>{this.props.post.caption}</h4>
+              <div>
+                <Button bsStyle="info" bsSize="small" onClick={this.toggleLike}>{likedButton}</Button>&nbsp;
+              </div>
+            </div>
           </Thumbnail>
         </Col>
         </Row>
