@@ -29,6 +29,7 @@ export class NewsFeedEntry extends Component {
 
   render() {
     const likeText = this.state.likes === 1 ? 'like': 'likes'; 
+    const likedButton = this.state.liked ? 'Liked': 'Like';
     return (
       <Grid>
         <Row>
@@ -42,7 +43,7 @@ export class NewsFeedEntry extends Component {
               <p>{this.props.post.username}</p>
               <h4>{this.props.post.caption}</h4>
               <div>
-                <Button bsStyle="info" bsSize="small" onClick={this.toggleLike}>Like</Button>&nbsp;
+                <Button bsStyle="info" bsSize="small" onClick={this.toggleLike}>{likedButton}</Button>&nbsp;
               </div>
             </div>
           </Thumbnail>
