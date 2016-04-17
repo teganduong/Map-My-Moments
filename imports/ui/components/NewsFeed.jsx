@@ -9,9 +9,14 @@ export class NewsFeed extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.setPosts();
+  }
+
   componentWillReceiveProps() {
     // This will trigger when new post added to database
     NewsFeed.posts = this.props.posts;
+    this.props.setPosts();
   }
 
   render() {

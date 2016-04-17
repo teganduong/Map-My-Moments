@@ -34,7 +34,7 @@ export class NewsFeedEntry extends Component {
         <Row>
         <Col xs={12} md={4}>
           <Thumbnail src={this.props.post.picURL} alt='200x200'>
-            <p className='text-left'>
+            <div className='text-left'>
               <label>
                 <span className="glyphicon glyphicon-heart" aria-hidden="true"> </span>
                 <span> {this.state.likes} {likeText}</span>
@@ -44,7 +44,7 @@ export class NewsFeedEntry extends Component {
               <div>
                 <Button bsStyle="info" bsSize="small" onClick={this.toggleLike}>Like</Button>&nbsp;
               </div>
-            </p>
+            </div>
           </Thumbnail>
         </Col>
         </Row>

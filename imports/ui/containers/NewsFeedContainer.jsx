@@ -13,14 +13,6 @@ export const NewsFeedContainer = React.createClass({
       };
   },
 
-  componentDidMount() {
-    this.onPostsUpdate();
-  },
-
-  onPostsUpdate: function(newPosts) {
-    this.setState({posts: newPosts});
-  },
-
   getMeteorData() {
     var self = this;
     var currentLoc = Geolocation.latLng();
@@ -31,34 +23,36 @@ export const NewsFeedContainer = React.createClass({
         maxRecords: 10,
         radius: 300
       };
-      
-      Meteor.call('posts.nearby', currentLoc.lng, currentLoc.lat, 300, 10,
-        function(err, result) {
-        if (err) { throw new Error ('Problem retrieving posts from database')}
-        //use the onPostsUpdate method to update the state so newsfeed can update reactively
-        self.onPostsUpdate(result);
-      });
-
-      var handle = Meteor.subscribe('posts.nearbyPub', options);
-
-      if( handle.ready() ) {
-        Meteor.call('posts.nearby', options.center.lng, options.center.lat, options.radius, options.maxRecords,
-          function(err, result) {
-          if (err) { throw new Error ('Problem retrieving posts from database')}
-          self.onPostsUpdate(result);
-        });
-      }
     }
 
     return {
-      options: options,
-      posts: this.state.posts
+      options: this.data.options,
+      posts: this.state.posts,
+      currentLoc: currentLoc
+    }
+  },
+
+  setPosts() {
+    var self = this;
+    if (this.data.currentLoc) {
+      Meteor.call('posts.nearby', this.data.currentLoc.lng, this.data.currentLoc.lat, 300, 10,
+        function(err, result) {
+        if (err) { throw new Error('Problem retrieving posts from database');}
+        // once component is mounted, update the newsfeed with data retrieved from database
+        else if (self.isMounted()) {
+          self.setState({posts: result});
+        }
+      });
     }
   },
 
   render() {
     if (this.data.posts) {   
-      return <NewsFeed options={this.data.options} posts={this.state.posts}/>;
+      return <NewsFeed 
+        options={this.data.options} 
+        posts={this.state.posts}
+        setPosts={this.setPosts}
+      />;
     }   
     return <div>Loading News Feed...</div>;
   }
