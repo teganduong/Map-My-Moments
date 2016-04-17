@@ -10,38 +10,74 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+1. [Installation](#installation)
 1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Setup](#setup)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
+    1. [Configure Keys](#configure-keys)
+1. [Usage](#Usage)
+1. [Helpful Links](#helpful-links)
 1. [Contributing](#contributing)
 
-## Usage
+## Installation
 
-> Some usage instructions
+### Meteor
+
+Meteor supports OS X, Windows, and Linux, and is simple to install. The command line installer supports Mac OS X 10.7 (Lion) and above, and Linux on x86 and x86_64 architectures. The Windows installer supports Windows 7, Windows 8.1, Windows 10, Windows Server 2008, and Windows Server 2012.
+
+On OS X or Linux?
+
+Install the latest official Meteor release from your terminal:
+
+```sh
+curl https://install.meteor.com/ | sh
+```
+
+On Windows? [Go here for further instructions](https://www.meteor.com/install)
+
 
 ## Requirements
 
-- Node 0.10.x
+- Meteor 1.3
+- Node 4.4.2
+- React ^15.0.0
 
 
-## Development
+## Setup
 
 ### Installing Dependencies
 
-From within the root directory:
+Clone this repo to your local work station and from within the root directory:
 
 ```sh
-sudo npm install -g bower
-npm install
-bower install
+meteor npm install
 ```
 
-### Roadmap
+### Configure Keys
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+#### Google API Key
+- Setup a [Google API key](https://developers.google.com/maps/documentation/javascript/get-api-key#key) 
+- Create a new file to store this key in: `imports/api/google-keys.js`
+- Copy and paste this into your google-keys.js file:
+```sh
+export const GOOGLEAPI = 'YOUR-GOOGLE-API-KEY-HERE';
+```
+
+
+## Usage
+
+Once the dependencies are installed and configuration keys are setup, you can start the application with:
+```sh
+meteor run --settings=config.json
+```
+Open your web browser and go to `http://localhost:3000` to see the app running.
+
+
+## Helpful Links
+
+- Integrate Meteor and React: [Create Todo App with React](https://www.meteor.com/tutorials/react/creating-an-app)
+- [Meteor Docs: API reference](http://docs.meteor.com/#/full/meteorguide)
+- [Meteor Guide: Tips and Best Practices](http://guide.meteor.com/)
 
 
 ## Contributing
