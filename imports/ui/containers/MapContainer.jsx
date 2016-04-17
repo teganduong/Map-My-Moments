@@ -18,17 +18,35 @@ export const MapContainer = React.createClass({
         photos: [],
         markers: [],
         radius: 100000,
-        zoom: DEFAULT_MAP_ZOOM
+        zoom: DEFAULT_MAP_ZOOM,
+        map: {}
       };
     },
 
   //This method updates the markers of the container when called (e.g. zoom change)
   setPhotos: function() {
     let self = this;
+    self.resetMarkers();
     Meteor.call('posts.nearby', this.data.currentLoc.lng, this.data.currentLoc.lat, this.state.radius, DEFAULT_MAX_POSTS,
             function(err, result) {
             if (err) { throw new Error ('Problem finding posts from database')}
             self.setState({photos: result});
+            //adding markers so map can render
+            for(let post of result) {
+              const photoCoor = {
+                lat: post.loc.coordinates[1],
+                lng: post.loc.coordinates[0]
+              }
+
+              var marker = new google.maps.Marker({
+                position: photoCoor,
+                // map: map.instance,
+                animation: google.maps.Animation.DROP,
+                url: Meteor.absoluteUrl('photo/' + post._id)
+              });
+              self.addMarker(marker);
+            }
+
           });
   },
 
@@ -50,6 +68,11 @@ export const MapContainer = React.createClass({
   setMapRadius: function(mapInstance) {
     //change state so that radius adjusts for new map instances
     this.setState({radius: radiusOfCurrentZoom(mapInstance), zoom: mapInstance.zoom });
+  },
+
+  setMapInstance: function(mapInstance) {
+    this.setState({map: mapInstance});
+    console.log('map state set: ', this.state.map);
   },
 
   getMeteorData() {
@@ -91,22 +114,23 @@ export const MapContainer = React.createClass({
     return {
       loaded: GoogleMaps.loaded(),
       mapOptions: GoogleMaps.loaded() && options,
-      photos: self.photos,
+      photos: self.state.photos,
       currentLoc: currentLoc
     }
   },
 
   render() {
-    if (this.data.loaded && this.data.mapOptions) {   
+    if (this.data.loaded && this.data.mapOptions) {
       return <MapDisplay 
                 name="mymap" 
                 options={this.data.mapOptions} 
-                photos={this.state.photos}
+                photos={this.data.photos}
                 markers={this.state.markers}
+                map={this.state.map}
                 setMapRadius = {this.setMapRadius}
                 setPhotos= {this.setPhotos} 
                 addMarker= {this.addMarker}
-                resetMarkers= {this.resetMarkers} />;
+                setMapInstance= {this.setMapInstance} />;
     }   
     return <div>Loading map...</div>;
   }
