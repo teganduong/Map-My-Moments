@@ -10,6 +10,7 @@
 
 ## Table of Contents
 
+1. [Installation](#installation)
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
@@ -17,6 +18,22 @@
     1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
+
+## Installation
+
+### Meteor
+
+Meteor supports OS X, Windows, and Linux, and is simple to install. The command line installer supports Mac OS X 10.7 (Lion) and above, and Linux on x86 and x86_64 architectures. The Windows installer supports Windows 7, Windows 8.1, Windows 10, Windows Server 2008, and Windows Server 2012.
+
+On OS X or Linux?
+
+Install the latest official Meteor release from your terminal:
+
+```sh
+curl https://install.meteor.com/ | sh
+```
+
+On Windows? [Go here for further instructions](https://www.meteor.com/install)
 
 ## Usage
 
