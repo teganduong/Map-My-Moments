@@ -15,7 +15,7 @@
 1. [Setup](#setup)
     1. [Installing Dependencies](#installing-dependencies)
 1. [Usage](#Usage)
-1. [Team](#team)
+1. [Helpful Links](#helpful-links)
 1. [Contributing](#contributing)
 
 ## Installation
@@ -62,9 +62,11 @@ meteor run --settings=config.json
 Open your web browser and go to `http://localhost:3000` to see the app running.
 
 
-### Roadmap
+## Helpful Links
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+- Integrate Meteor and React: [Create Todo App with React](https://www.meteor.com/tutorials/react/creating-an-app)
+- [Meteor Docs: API reference](http://docs.meteor.com/#/full/meteorguide)
+- [Meteor Guide: Tips and Best Practices](http://guide.meteor.com/)
 
 
 ## Contributing
