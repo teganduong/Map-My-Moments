@@ -27,7 +27,7 @@ export const MapContainer = React.createClass({
   setPhotos: function() {
     let self = this;
     this.resetMarkers();
-    
+
     Meteor.call('posts.nearby', this.data.currentLoc.lng, this.data.currentLoc.lat, this.state.radius, DEFAULT_MAX_POSTS,
             function(err, result) {
             if (err) { throw new Error ('Problem finding posts from database')}
@@ -85,23 +85,6 @@ export const MapContainer = React.createClass({
         maxRecords: DEFAULT_MAX_POSTS,
         radius: this.state.radius
       };
-
-      // Meteor.call('posts.nearby', markersSettings.center.lng, markersSettings.center.lat, markersSettings.radius, markersSettings.maxRecords,
-      //         function(err, result) {
-      //         if (err) { throw new Error ('Problem finding posts from database')}
-      //         //use the onMarkersUpdate method to update the state so map markers can update reactively
-      //         self.onMarkersUpdate(result);
-      //       });
-
-      // var handle = Meteor.subscribe('posts.nearbyPub', markersSettings);
-
-      // if( handle.ready() ) {
-      //   Meteor.call('posts.nearby', markersSettings.center.lng, markersSettings.center.lat, markersSettings.radius, markersSettings.maxRecords,
-      //     function(err, result) {
-      //     if (err) { throw new Error ('Problem finding posts from database')}
-      //     self.onMarkersUpdate(result);
-      //   });
-      // }
 
       var options = {
         center: new google.maps.LatLng(currentLoc.lat, currentLoc.lng),
