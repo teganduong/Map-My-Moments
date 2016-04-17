@@ -59,7 +59,7 @@ Once the dependencies are installed, you can start the application with:
 ```sh
 meteor run --settings=config.json
 ```
-Open your web browser and go to 'http://localhost:3000' to see the app running.
+Open your web browser and go to `http://localhost:3000` to see the app running.
 
 
 ### Roadmap
