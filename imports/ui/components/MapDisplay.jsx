@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 // code adapted from sample React demo by creator of map package
 // https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
@@ -58,7 +59,7 @@ export const MapDisplay = React.createClass({
 
       //set listener so clicking on marker goes to photo page
       google.maps.event.addListener(marker, 'click', function() {
-          window.location.href = photoUrl;
+        FlowRouter.go(photoUrl);
       });
     }
   },
