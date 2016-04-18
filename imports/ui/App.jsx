@@ -10,12 +10,13 @@ var contentStyle = {
 // define and export our Layout component
 export const Layout = ({content}) => (
     <Grid>
-      <h3 className='text-center'>Map My Moments</h3>
-      <hr />
-      <Row>
-      <Col xs={12} md={4}  style={contentStyle}>
-       {content}
-      </Col>
+  <div>
+    <h3 className='text-center'><img className='logo' src='/assets/MMMMiniLogo.png'></img></h3>
+    <hr />
+    <div className='row row-centered'>
+      <div className='col-lg-4 text-center col-centered' style={contentStyle}>
+        {content}
+      </div>
       <div>
         <NavBar />
       </div>
