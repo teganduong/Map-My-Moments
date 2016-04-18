@@ -15,7 +15,7 @@ Meteor.startup(function() {
   // on in order to have the most accurate location by the time the user checks newsfeed
   Geolocation.currentLocation();
 
-  GoogleMaps.load();
+  // GoogleMaps.load();
 });
 
 /* check if logged in before going to a new route *
