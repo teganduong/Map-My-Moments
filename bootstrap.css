@@ -7008,3 +7008,13 @@ a.list-group-item-danger.active:focus {
 .bottomBuffer { 
   padding-top: 50px;
  }
+
+ .logo {
+  width: 70%;
+
+ }
+
+ .logoDiv{
+  margin-left: auto;
+  margin-right: auto;
+ }
