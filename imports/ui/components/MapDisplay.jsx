@@ -76,8 +76,8 @@ export const MapDisplay = React.createClass({
 });
 
 const mapsStyles = {
-  width: window.innerWidth,
-  height: (window.innerHeight - 130),
+  width: '100%',
+  height: (window.innerHeight - 155),
   left: 0,
   top: 0,
 
