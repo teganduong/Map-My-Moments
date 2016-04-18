@@ -32,7 +32,6 @@ export const MapDisplay = React.createClass({
       //add listener for when zoom level changes 
       //https://developers.google.com/maps/documentation/javascript/events#EventProperties
       map.instance.addListener('zoom_changed', function() {
-        console.log('go!');
         selfProps.setMapRadius(map.instance);
         selfProps.setPhotos();
       });
@@ -48,13 +47,17 @@ export const MapDisplay = React.createClass({
 
   generateMarkers() {
     const selfProps= this.props;
-    console.log('these are the markers: ', selfProps.markers);
 
     //go through existing markers and set map to current map so they display
     for(let marker of selfProps.markers) {
+      
+      //setMap to null clears marker from maps
       marker.setMap(null);
+      //go through state's markers and add to current map
       marker.setMap(selfProps.map.instance);
       const photoUrl = marker.url;
+
+      //set listener so clicking on marker goes to photo page
       google.maps.event.addListener(marker, 'click', function() {
           window.location.href = photoUrl;
       });

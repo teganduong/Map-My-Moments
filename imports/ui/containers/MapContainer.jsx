@@ -29,25 +29,26 @@ export const MapContainer = React.createClass({
     this.resetMarkers();
 
     Meteor.call('posts.nearby', this.data.currentLoc.lng, this.data.currentLoc.lat, this.state.radius, DEFAULT_MAX_POSTS,
-            function(err, result) {
-            if (err) { throw new Error ('Problem finding posts from database')}
-            self.setState({photos: result, markers: []});
-            //adding markers so map can render
-            for(let post of result) {
-              const photoCoor = {
-                lat: post.loc.coordinates[1],
-                lng: post.loc.coordinates[0]
-              }
+      function(err, result) {
+      if (err) { throw new Error ('Problem finding posts from database')}
+      self.setState({photos: result});
+      
+      //adding markers so map can render
+      for(let post of result) {
+        const photoCoor = {
+          lat: post.loc.coordinates[1],
+          lng: post.loc.coordinates[0]
+        }
 
-              var marker = new google.maps.Marker({
-                position: photoCoor,
-                url: Meteor.absoluteUrl('photo/' + post._id)
-              });
+        var marker = new google.maps.Marker({
+          position: photoCoor,
+          url: Meteor.absoluteUrl('photo/' + post._id)
+        });
 
-              self.addMarker(marker);
-            }
+        self.addMarker(marker);
+      }
 
-          });
+    });
   },
 
   addMarker: function(newMarker) {
@@ -112,8 +113,6 @@ export const MapContainer = React.createClass({
                 map={this.state.map}
                 setMapRadius = {this.setMapRadius}
                 setPhotos= {this.setPhotos} 
-                addMarker= {this.addMarker}
-                resetMarkers= {this.resetMarkers}
                 setMapInstance= {this.setMapInstance} />;
     }   
     return <div>Loading map...</div>;
