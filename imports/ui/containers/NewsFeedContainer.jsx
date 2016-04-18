@@ -20,7 +20,7 @@ export const NewsFeedContainer = React.createClass({
     if(currentLoc) {
       var options = {
         center: currentLoc,
-        maxRecords: 10,
+        maxRecords: 20,
         radius: 300
       };
     }
@@ -35,7 +35,7 @@ export const NewsFeedContainer = React.createClass({
   setPosts() {
     var self = this;
     if (this.data.currentLoc) {
-      Meteor.call('posts.nearby', this.data.currentLoc.lng, this.data.currentLoc.lat, 300, 10,
+      Meteor.call('posts.nearby', this.data.currentLoc.lng, this.data.currentLoc.lat, 300, 20,
         function(err, result) {
         if (err) { throw new Error('Problem retrieving posts from database');}
         // once component is mounted, update the newsfeed with data retrieved from database

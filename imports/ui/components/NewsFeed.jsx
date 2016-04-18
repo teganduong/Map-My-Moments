@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { NewsFeedEntry } from './NewsFeedEntry';
-import { createContainer } from 'meteor/react-meteor-data';
 
 export class NewsFeed extends Component {
   constructor(props) {
