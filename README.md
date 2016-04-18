@@ -63,6 +63,33 @@ meteor npm install
 export const GOOGLEAPI = 'YOUR-GOOGLE-API-KEY-HERE';
 ```
 
+#### Amazon AWS S3 Access Key
+- Setup a [AWS Access Key for S3](https://console.aws.amazon.com/iam/home#security_credential) 
+- Create a new file to store this key in: `config.json`
+- Copy and paste this into your config.json file:
+```sh
+{
+  "AWSRegion": "us-west-1",
+  "AWSAccessKeyId": "ACCESS_KEY_ID_HERE",
+  "AWSSecretAccessKey": "ACCESS_SECRET_HERE"
+}
+```
+- Modify the S3 bucket [mapmymoments] CORS configuration to:
+```sh
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>PUT</AllowedMethod>
+        <AllowedMethod>POST</AllowedMethod>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>HEAD</AllowedMethod>
+        <MaxAgeSeconds>3000</MaxAgeSeconds>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
+```
+
 
 ## Usage
 
