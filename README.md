@@ -11,8 +11,8 @@
 ## Table of Contents
 
 1. [Installation](#installation)
-    1. Meteor
-    1. Mobile Integration
+    1. [Meteor](#meteor)
+    1. [Mobile Integration](#mobile-integration)
 1. [Requirements](#requirements)
 1. [Setup](#setup)
     1. [Installing Dependencies](#installing-dependencies)
@@ -39,7 +39,7 @@ On Windows? [Go here for further instructions](https://www.meteor.com/install)
 
 ### Mobile Integration
 
-In addition to running in the browser, our app also runs on the mobile iOS and Android platforms. To setup mobile integration, [go here](http://guide.meteor.com/mobile.html#installing-prerequisites)
+In addition to running in the browser, our app also runs on the mobile iOS and Android platforms. To setup mobile integration, [go here.](http://guide.meteor.com/mobile.html#installing-prerequisites)
 
 
 ## Requirements
@@ -104,6 +104,23 @@ Once the dependencies are installed and configuration keys are setup, you can st
 meteor run --settings=config.json
 ```
 Open your web browser and go to `http://localhost:3000` to see the app running.
+
+### Configure Google Login
+
+Now that the app is open on the browser, you should see a "Configure Google Login" button after clicking on the "Sign in" dropdown. Clicking on the "Configure Google Login" button will display a set of instructions that you should follow. After retrieving your Client ID and Client secret, copy and paste them in `server/settings.js`:
+
+```sh
+ServiceConfiguration.configurations.upsert(
+  { service: "google" },
+  {
+    $set: {
+      clientId: "CLIENT_ID_HERE",
+      loginStyle: "popup",
+      secret: "CLIENT_SECRET_HERE"
+    }
+  }
+);
+```
 
 
 ## Helpful Links
