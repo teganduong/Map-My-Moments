@@ -14,7 +14,7 @@
     1. [Meteor](#meteor)
     1. [Mobile Integration](#mobile-integration)
 1. [Requirements](#requirements)
-1. [File Structure: Directory Layout](#file-structure)
+1. [File Structure: Directory Layout](#file-structure:directory-layout)
 1. [Setup](#setup)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Configure Keys](#configure-keys)
@@ -83,7 +83,7 @@ public/
 
 server/
   main.js                           # server entry point, imports all server code
-  settings.js
+  settings.js                       # configure google login settings
 
 bootstrap.css                       # styling for app
 config.json                         # AWS configuration keys
