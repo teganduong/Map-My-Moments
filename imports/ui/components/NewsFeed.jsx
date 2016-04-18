@@ -22,7 +22,6 @@ export class NewsFeed extends Component {
     const { posts } = this.props;
     return (
       <div className="newsfeed-container">
-        <h2> News Feed </h2>
         {posts.map(post => (
           <NewsFeedEntry
             key={post._id}
