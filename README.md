@@ -11,6 +11,8 @@
 ## Table of Contents
 
 1. [Installation](#installation)
+    1. Meteor
+    1. Mobile Integration
 1. [Requirements](#requirements)
 1. [Setup](#setup)
     1. [Installing Dependencies](#installing-dependencies)
@@ -34,6 +36,10 @@ curl https://install.meteor.com/ | sh
 ```
 
 On Windows? [Go here for further instructions](https://www.meteor.com/install)
+
+### Mobile Integration
+
+In addition to running in the browser, our app also runs on the mobile iOS and Android platforms. To setup mobile integration, [go here](http://guide.meteor.com/mobile.html#installing-prerequisites)
 
 
 ## Requirements
