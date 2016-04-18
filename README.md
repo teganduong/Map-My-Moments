@@ -14,6 +14,7 @@
     1. [Meteor](#meteor)
     1. [Mobile Integration](#mobile-integration)
 1. [Requirements](#requirements)
+1. [File Structure: Directory Layout](#file-structure)
 1. [Setup](#setup)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Configure Keys](#configure-keys)
@@ -47,6 +48,47 @@ In addition to running in the browser, our app also runs on the mobile iOS and A
 - Meteor 1.3
 - Node 4.4.2
 - React ^15.0.0
+
+
+## File Structure: Directory Layout
+
+```sh
+client/                             # client entry point, imports all client code
+  routes.jsx                        # set up all routes in the app
+
+imports/
+  api/
+    google-keys.js                  # configure google API key
+    posts.js                        # definition of the Posts collection and methods related to posts
+    utils.js                        # utility function used in MapContainer.jsx
+  
+  ui/
+    components/                     # all reusable components in the application
+      Camera.jsx
+      LogOut.jsx
+      MapDisplay.jsx
+      NavBar.jsx
+      NewsFeed.jsx                  # presentational component that renders posts
+      NewsFeedEntry.jsx             # renders a single post within NewsFeed
+      PhotoViewer.js                # renders a single post upon marker click in MapDisplay
+    containers/                     # handle and pass data into UI components via props
+      MapContainer.jsx              # wrapper component that passes data to MapDisplay
+      NewsFeedContainer.jsx         # wrapper component that passes data to NewsFeed
+    App.jsx                         # layout component for whole app
+    Signin.jsx                      # configure login template
+
+public/
+  assets/
+    placeholder.jpg
+
+server/
+  main.js                           # server entry point, imports all server code
+  settings.js
+
+bootstrap.css                       # styling for app
+config.json                         # AWS configuration keys
+mobile-config.js
+```
 
 
 ## Setup
@@ -128,6 +170,7 @@ ServiceConfiguration.configurations.upsert(
 - Integrate Meteor and React: [Create Todo App with React](https://www.meteor.com/tutorials/react/creating-an-app)
 - [Meteor Docs: API reference](http://docs.meteor.com/#/full/meteorguide)
 - [Meteor Guide: Tips and Best Practices](http://guide.meteor.com/)
+- [Meteor Application Structure](http://guide.meteor.com/structure.html#javascript-structure)
 
 
 ## Contributing
