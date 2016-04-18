@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { dummyData } from '../../api/dummyData.js';
 
 // code adapted from sample React demo by creator of map package
@@ -59,7 +60,7 @@ export const MapDisplay = React.createClass({
 
       //set listener so clicking on marker goes to photo page
       google.maps.event.addListener(marker, 'click', function() {
-          window.location.href = photoUrl;
+        FlowRouter.go(photoUrl);
       });
     }
   },
