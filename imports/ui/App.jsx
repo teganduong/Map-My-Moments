@@ -18,7 +18,7 @@ export const Layout = ({content}) => (
           </Col>
           <div>
             <NavBar />
-          </div>
-      </Row>
+            </div>
+        </Row>
     </Grid>
 );
