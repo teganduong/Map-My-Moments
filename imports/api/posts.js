@@ -88,6 +88,6 @@ Meteor.methods({
   'posts.getPostByID'(postId) {
     check(postId, String);
     return Posts.findOne({_id: postId});
-  }    
-
+  } 
+  
 });
