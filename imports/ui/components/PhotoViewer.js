@@ -11,7 +11,6 @@ export class PhotoViewer extends Component {
       post: null,
     };
     Meteor.call('posts.getPostByID', props.photoId, function(err, result) {
-      console.log(result);
       self.setState({ post: result });
     });
   }

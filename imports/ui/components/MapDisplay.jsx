@@ -13,6 +13,7 @@ export const MapDisplay = React.createClass({
   componentDidMount() {
     // GoogleMaps and methods made available through meteor package
     const selfProps= this.props;
+    const self = this;
     GoogleMaps.create({
       name: this.props.name,
       element: document.getElementById('map-container'),
@@ -25,15 +26,19 @@ export const MapDisplay = React.createClass({
       selfProps.setMapRadius(map.instance);
       selfProps.setPhotos();
 
+      //set map so avaialble to rest of component
+      selfProps.setMapInstance(map);
+
       //add listener for when zoom level changes 
       //https://developers.google.com/maps/documentation/javascript/events#EventProperties
       map.instance.addListener('zoom_changed', function() {
         selfProps.setMapRadius(map.instance);
         selfProps.setPhotos();
       });
+      
+      self.generateMarkers();
     });
 
-    this.generateMarkers();
   },
 
   componentWillReceiveProps() {
@@ -42,37 +47,21 @@ export const MapDisplay = React.createClass({
 
   generateMarkers() {
     const selfProps= this.props;
-    // Once the map is ready, we can start setting the pins
-    GoogleMaps.ready(this.props.name, function(map) {
 
-      // loop through and create a pin for each photo in passed in markers
-      if(selfProps.photos.length) {
-        //first clear map of markers
-        for(let marker of selfProps.markers) {
-          marker.setMap(null);
-        }
+    //go through existing markers and set map to current map so they display
+    for(let marker of selfProps.markers) {
+      
+      //setMap to null clears marker from maps
+      marker.setMap(null);
+      //go through state's markers and add to current map
+      marker.setMap(selfProps.map.instance);
+      const photoUrl = marker.url;
 
-        for(let photo of selfProps.photos) {
-          const photoCoor = {
-            lat: photo.loc.coordinates[1],
-            lng: photo.loc.coordinates[0]
-          }
-
-          var marker = new google.maps.Marker({
-            position: photoCoor,
-            map: map.instance,
-            animation: google.maps.Animation.DROP,
-            url: Meteor.absoluteUrl('photo/' + photo._id)
-          });
-
-          google.maps.event.addListener(marker, 'click', function() {
-              window.location.href = this.url;
-          });
-
-          selfProps.addMarker(marker);
-        }
-      }
-    });
+      //set listener so clicking on marker goes to photo page
+      google.maps.event.addListener(marker, 'click', function() {
+          window.location.href = photoUrl;
+      });
+    }
   },
 
   componentWillUnmount() {
