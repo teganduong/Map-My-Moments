@@ -42,7 +42,7 @@ export const MapContainer = React.createClass({
 
         var marker = new google.maps.Marker({
           position: photoCoor,
-          url: Meteor.absoluteUrl('photo/' + post._id)
+          url: '/photo/' + post._id
         });
 
         self.addMarker(marker);
