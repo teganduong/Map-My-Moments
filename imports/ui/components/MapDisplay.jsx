@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { dummyData } from '../../api/dummyData.js';
 
 // code adapted from sample React demo by creator of map package
 // https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx

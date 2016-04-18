@@ -91,30 +91,3 @@ Meteor.methods({
   }    
 
 });
-
-
-// This code only runs on the server
-if (Meteor.isServer) {
-// this publishes updates 
- Meteor.publish('posts.nearbyPub', function(terms) {
-   check(terms.maxRecords, Number);
-   check(terms.radius, Number);
-   check(terms.center.lng, Number);
-   check(terms.center.lat, Number);
-   return Posts.find({
-     loc: {
-       $nearSphere: {
-         $geometry: {
-           type: "Point",
-           coordinates: [terms.center.lng, terms.center.lat]
-         },
-         $maxDistance: terms.radius
-       }
-     }
-   },
-     {
-       limit: terms.maxRecords
-     }
-   );
- });
-}
