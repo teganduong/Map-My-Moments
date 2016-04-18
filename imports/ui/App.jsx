@@ -11,7 +11,7 @@ var contentStyle = {
 export const Layout = ({content}) => (
     <Grid>
   <div>
-    <h3 className='text-center'><img className='logo' src='/assets/MMMMiniLogo.png'></img></h3>
+    <h3 className='text-center'><div className='logoDiv'><img className='logo' src='/assets/MMMMiniLogo.png'></img></div></h3>
     <hr />
     <div className='row row-centered'>
       <div className='col-lg-4 text-center col-centered' style={contentStyle}>

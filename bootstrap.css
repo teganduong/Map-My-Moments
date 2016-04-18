@@ -7011,4 +7011,11 @@ a.list-group-item-danger.active:focus {
 
  .logo {
   width: 70%;
+
+ }
+
+ .logoDiv{
+  width: 370px;
+  margin-left: auto;
+  margin-right: auto;
  }
