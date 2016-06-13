@@ -4,9 +4,10 @@
 
 ## Team
 
-  - __Product Owner__: Tegan Duong
-  - __Scrum Master__: Bucko Perley
-  - __Development Team Members__: Vince Boucherie, Jonathan Mah
+  - Tegan Duong
+  - Bucko Perley
+  - Vince Boucherie
+  - Jonathan Mah
 
 ## Table of Contents
 
